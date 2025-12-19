@@ -272,7 +272,7 @@ const ChatModal: React.FC<ChatModalProps> = ({ open, signalName, onClose }) => {
                     >
                       <div className="flex-shrink-0">
                         <img
-                          src="/image/logo.jpeg"
+                          src="/image/site-icon.png"
                           alt="Assistant"
                           className="h-7 w-7 sm:h-9 sm:w-9 rounded-full border border-slate-200 shadow-sm"
                         />
@@ -313,7 +313,7 @@ const ChatModal: React.FC<ChatModalProps> = ({ open, signalName, onClose }) => {
                 {isTyping && (
                   <div className="flex items-start gap-2 sm:gap-4" aria-hidden>
                     <img
-                      src="/image/logo.jpeg"
+                      src="/image/site-icon.png"
                       alt="Assistant"
                       className="h-7 w-7 sm:h-9 sm:w-9 rounded-full border border-slate-200 shadow-sm"
                     />
