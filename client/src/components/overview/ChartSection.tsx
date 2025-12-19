@@ -186,7 +186,7 @@ const ChartSection: React.FC = () => {
 
       <div className={isSmall ? "h-48 sm:h-56" : "h-64 sm:h-72"} style={{ minHeight: isSmall ? '192px' : '256px' }}>
         <ResponsiveContainer width="100%" height="100%" minHeight={isSmall ? 192 : 256}>
-          <LineChart data={sampleData} margin={{ top: 6, right: 4, left: -10, bottom: 0 }}>
+          <LineChart data={sampleData} margin={{ top: 6, right: 8, left: -10, bottom: 0 }}>
             <defs>
               <linearGradient id="gradCopper" x1="0" x2="0" y1="0" y2="1">
                 <stop offset="0%" stopColor={colors.copper} stopOpacity={0.14} />
