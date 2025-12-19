@@ -8,10 +8,11 @@ import {
   Tooltip,
   CartesianGrid,
   ResponsiveContainer,
-  Legend,
+  Area,
   ReferenceDot,
 } from "recharts";
 
+/* ---------------- TYPES ---------------- */
 type Point = {
   time: string;
   copper: number;
@@ -19,7 +20,7 @@ type Point = {
   aluminum: number;
 };
 
-// --- sample data (same as yours) ---
+/* ---------------- DATA ---------------- */
 const sampleData: Point[] = [
   { time: "03:57 PM", copper: 7600, steel: 5300, aluminum: 22400 },
   { time: "03:58 PM", copper: 2635, steel: 310, aluminum: 2420 },
@@ -46,281 +47,161 @@ const sampleData: Point[] = [
   { time: "04:19 PM", copper: 8580, steel: 1485, aluminum: 2685 },
 ];
 
-// helpers
-const formatPrice = (v: number) => {
-  if (Math.abs(v) >= 1_000_000) return `$${(v / 1_000_000).toFixed(2)}M`;
-  if (Math.abs(v) >= 1_000) return `$${(v / 1_000).toFixed(1)}k`;
-  return `$${v}`;
-};
+/* ---------------- HELPERS ---------------- */
+const formatPrice = (v: number) =>
+  v >= 1000 ? `$${(v / 1000).toFixed(1)}k` : `$${v}`;
 
-const niceTicks = (min: number, max: number, count = 4) => {
-  const range = max - min;
-  if (range <= 0) return [Math.round(min)];
-  const rawStep = range / count;
+const clamp = (v: number, max: number) => Math.min(v, max);
 
-  const pow = Math.pow(10, Math.floor(Math.log10(rawStep)));
-  const frac = rawStep / pow;
-  let niceFrac = 1;
-  if (frac <= 1) niceFrac = 1;
-  else if (frac <= 2) niceFrac = 2;
-  else if (frac <= 5) niceFrac = 5;
-  else niceFrac = 10;
+/* ---------------- TOOLTIP (FINAL FIX) ---------------- */
+const CustomTooltip = ({ active, payload, label }: any) => {
+  if (!active || !payload?.length) return null;
 
-  const step = niceFrac * pow;
-  const start = Math.floor(Math.max(0, min) / step) * step;
-  const ticks: number[] = [];
-  for (let v = start; v <= max + step; v += step) {
-    ticks.push(Math.round(v));
-    if (ticks.length > 30) break;
-  }
-  return ticks.length >= 2 ? ticks : [Math.round(min), Math.round(max)];
-};
+  // ✅ ONLY show Line entries (Area entries are removed)
+  const lineItems = payload.filter(
+    (p: any) => p.stroke && p.stroke !== "none"
+  );
 
-// custom tooltip - dedupe by dataKey (so duplicate lines with same dataKey won't show twice)
-const CustomTooltip: React.FC<any> = ({ active, payload, label }) => {
-  if (!active || !payload || payload.length === 0) return null;
-
-  const seen = new Set<string>();
-  // keep only first entry per dataKey
-  const deduped = (payload as any[]).filter((p) => {
-    if (!p || !p.dataKey) return false;
-    if (seen.has(p.dataKey)) return false;
-    seen.add(p.dataKey);
-    return true;
-  });
-
-  if (deduped.length === 0) return null;
+  if (lineItems.length === 0) return null;
 
   return (
-    <div className="rounded-md p-3 text-base" style={{ backgroundColor: 'rgb(var(--color-bg-primary))', boxShadow: 'var(--shadow-md)', border: '1px solid rgb(var(--color-border-medium))' }}>
-      <div className="text-sm mb-1" style={{ color: 'rgb(var(--color-text-tertiary))' }}>{label}</div>
-      {deduped.map((p: any) => (
-        <div key={p.dataKey} className="flex items-center gap-2 my-1">
-          <span style={{ width: 10, height: 10, borderRadius: 3, background: p.color }} />
-          <div style={{ color: 'rgb(var(--color-text-secondary))' }}>
-            <div className="font-medium">
-              {p.name ?? String(p.dataKey).charAt(0).toUpperCase() + String(p.dataKey).slice(1)}
-            </div>
-            <div className="text-slate-500 text-sm">{formatPrice(p.value)}</div>
-          </div>
+    <div className="rounded-xl px-3 py-2 bg-[rgba(10,15,25,0.9)] backdrop-blur-xl border border-white/10 shadow-xl">
+      <div className="text-xs text-white/50 mb-1">{label}</div>
+
+      {lineItems.map((p: any) => (
+        <div key={p.dataKey} className="flex items-center gap-2 text-sm">
+          {/* Color box */}
+          <span
+            className="h-2.5 w-2.5 rounded-sm"
+            style={{ background: p.stroke }}
+          />
+
+          {/* Name */}
+          <span className="text-white/80 font-medium">
+            {p.name}
+          </span>
+
+          {/* Value */}
+          <span className="ml-auto text-white font-semibold">
+            {formatPrice(p.value)}
+          </span>
         </div>
       ))}
     </div>
   );
 };
 
+/* ---------------- COMPONENT ---------------- */
 const ChartSection: React.FC = () => {
-  const [isSmall, setIsSmall] = useState<boolean>(() =>
-    typeof window !== "undefined" ? window.matchMedia("(max-width: 639px)").matches : false
-  );
+  const [isSmall, setIsSmall] = useState(false);
+
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    const mq = window.matchMedia("(max-width: 639px)");
-    const onChange = (e: MediaQueryListEvent | MediaQueryList) => setIsSmall(Boolean(e.matches));
-    if (mq.addEventListener) mq.addEventListener("change", onChange);
-    else mq.addListener(onChange);
-    onChange(mq);
-    return () => {
-      if (mq.removeEventListener) mq.removeEventListener("change", onChange);
-      else mq.removeListener(onChange);
-    };
+    const mq = window.matchMedia("(max-width: 640px)");
+    const cb = () => setIsSmall(mq.matches);
+    cb();
+    mq.addEventListener("change", cb);
+    return () => mq.removeEventListener("change", cb);
   }, []);
 
-  const latest = useMemo(() => sampleData[sampleData.length - 1], []);
   const colors = {
     copper: "#6366F1",
     steel: "#10B981",
     aluminum: "#FBBF24",
   };
 
-  // compute values and detect outliers: use 95th percentile as cap (fixed)
-  const allValues = sampleData.flatMap((d) => [d.copper, d.steel, d.aluminum]).filter(Number.isFinite);
+  /* ---------- OUTLIER HANDLING (VISUAL ONLY) ---------- */
+  const allValues = sampleData.flatMap(d => [
+    d.copper,
+    d.steel,
+    d.aluminum,
+  ]);
   const sorted = [...allValues].sort((a, b) => a - b);
-  const percentile95 = sorted[Math.max(0, Math.floor(sorted.length * 0.95) - 1)] ?? Math.max(...sorted);
-  const rawMin = Math.min(...allValues);
-  const rawMax = Math.max(...allValues);
+  const p95 = sorted[Math.floor(sorted.length * 0.95)];
+  const visualCap = p95 * 1.15;
 
-  // If rawMax is much larger than 95th percentile, treat as outlier and cap axis to slightly above percentile95.
-  // This keeps axis readable while not being dominated by a single spike.
-  const isOutlierPresent = rawMax > percentile95 * 1.5;
-  const axisMax = isOutlierPresent ? Math.max(percentile95 * 1.12, rawMax * 0.9) : rawMax;
-  const padding = Math.max(10, (axisMax - rawMin) * 0.08);
+  const visualData = useMemo(
+    () =>
+      sampleData.map(d => ({
+        ...d,
+        copper: clamp(d.copper, visualCap),
+        steel: clamp(d.steel, visualCap),
+        aluminum: clamp(d.aluminum, visualCap),
+      })),
+    []
+  );
 
-  const ticks = niceTicks(Math.max(0, rawMin - padding), axisMax + padding, 4);
-
-  const xInterval = Math.max(0, Math.floor(sampleData.length / (isSmall ? 4 : 6)));
+  const latest = visualData[visualData.length - 1];
 
   return (
     <div className="card-flat">
-      <div className="mb-3 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0">
-        <div>
-          <h2 className="text-base sm:text-lg font-semibold" style={{ color: 'rgb(var(--color-text-primary))' }}>Real-Time Pricing Intelligence</h2>
-          <p className="text-xs sm:text-sm" style={{ color: 'rgb(var(--color-text-tertiary))' }}>Live commodity price movements across global markets</p>
-        </div>
-
-        <div className={`flex items-center gap-2 sm:gap-3 ${isSmall ? "flex-wrap" : ""}`}>
-          <div className={`flex items-center gap-2 sm:gap-4 ${isSmall ? "flex-wrap" : "hidden sm:flex"}`}>
-            <div className="flex items-center gap-1.5 sm:gap-2">
-              <span className="h-1.5 w-4 sm:h-2 sm:w-6 rounded-sm" style={{ background: colors.copper }} />
-              <div className="text-xs sm:text-sm">
-                <div className="font-medium" style={{ color: 'rgb(var(--color-text-secondary))' }}>Copper</div>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-1.5 sm:gap-2">
-              <span className="h-1.5 w-4 sm:h-2 sm:w-6 rounded-sm" style={{ background: colors.steel }} />
-              <div className="text-xs sm:text-sm">
-                <div className="font-medium" style={{ color: 'rgb(var(--color-text-secondary))' }}>Steel</div>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-1.5 sm:gap-2">
-              <span className="h-1.5 w-4 sm:h-2 sm:w-6 rounded-sm" style={{ background: colors.aluminum }} />
-              <div className="text-xs sm:text-sm">
-                <div className="font-medium" style={{ color: 'rgb(var(--color-text-secondary))' }}>Aluminum</div>
-              </div>
-            </div>
-          </div>
-        </div>
+      {/* HEADER */}
+      <div className="mb-4">
+        <h2 className="text-lg font-semibold text-white">
+          Real-Time Pricing Intelligence
+        </h2>
+        <p className="text-sm text-white/50">
+          Live commodity price movements across global markets
+        </p>
       </div>
 
-      <div className={isSmall ? "h-48 sm:h-56" : "h-64 sm:h-72"} style={{ minHeight: isSmall ? '192px' : '256px' }}>
-        <ResponsiveContainer width="100%" height="100%" minHeight={isSmall ? 192 : 256}>
-          <LineChart data={sampleData} margin={{ top: 6, right: 8, left: -10, bottom: 0 }}>
+      {/* CHART */}
+      <div className={isSmall ? "h-52" : "h-72"}>
+        <ResponsiveContainer width="100%" height="100%">
+          <LineChart data={visualData}>
             <defs>
-              <linearGradient id="gradCopper" x1="0" x2="0" y1="0" y2="1">
-                <stop offset="0%" stopColor={colors.copper} stopOpacity={0.14} />
-                <stop offset="100%" stopColor={colors.copper} stopOpacity={0.02} />
+              <linearGradient id="gCopper" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor={colors.copper} stopOpacity={0.2} />
+                <stop offset="100%" stopColor={colors.copper} stopOpacity={0} />
               </linearGradient>
-              <linearGradient id="gradSteel" x1="0" x2="0" y1="0" y2="1">
-                <stop offset="0%" stopColor={colors.steel} stopOpacity={0.12} />
-                <stop offset="100%" stopColor={colors.steel} stopOpacity={0.02} />
+              <linearGradient id="gSteel" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor={colors.steel} stopOpacity={0.18} />
+                <stop offset="100%" stopColor={colors.steel} stopOpacity={0} />
               </linearGradient>
-              <linearGradient id="gradAl" x1="0" x2="0" y1="0" y2="1">
-                <stop offset="0%" stopColor={colors.aluminum} stopOpacity={0.12} />
-                <stop offset="100%" stopColor={colors.aluminum} stopOpacity={0.02} />
+              <linearGradient id="gAl" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor={colors.aluminum} stopOpacity={0.18} />
+                <stop offset="100%" stopColor={colors.aluminum} stopOpacity={0} />
               </linearGradient>
             </defs>
 
-            <CartesianGrid strokeDasharray="3 3" stroke="#eef2f7" />
+            <CartesianGrid
+              stroke="rgba(255,255,255,0.08)"
+              strokeDasharray="4 6"
+            />
+
             <XAxis
               dataKey="time"
-              tick={{ fill: "#475569", fontSize: isSmall ? 10 : 12 }}
-              interval={xInterval}
+              tick={{ fill: "#94a3b8", fontSize: 12 }}
               tickLine={false}
               axisLine={false}
-              padding={{ left: 6, right: 6 }}
+              interval={Math.floor(visualData.length / (isSmall ? 4 : 6))}
             />
 
             <YAxis
-              tick={{ fill: "#475569", fontSize: isSmall ? 10 : 12 }}
-              axisLine={false}
+              tick={{ fill: "#94a3b8", fontSize: 12 }}
               tickLine={false}
-              ticks={ticks}
-              width={isSmall ? 48 : 72}
-              tickFormatter={(val: number) => {
-                const numVal = Number(val);
-                if (Math.abs(numVal) >= 1000) return `${Math.round(numVal / 1000)}k`;
-                return String(val);
-              }}
+              axisLine={false}
+              width={56}
+              tickFormatter={(v) =>
+                v >= 1000 ? `${Math.round(v / 1000)}k` : v
+              }
             />
 
-            <Tooltip content={<CustomTooltip />} wrapperStyle={{ outline: "none" }} />
+            <Tooltip content={<CustomTooltip />} />
 
-            {!isSmall && (
-              <Legend
-                verticalAlign="top"
-                align="left"
-                wrapperStyle={{ paddingLeft: 8, fontSize: 14, color: "#334155" }}
-              />
-            )}
+            {/* AREAS (visual depth only, NOT in tooltip) */}
+            <Area dataKey="copper" fill="url(#gCopper)" stroke="none" />
+            <Area dataKey="steel" fill="url(#gSteel)" stroke="none" />
+            <Area dataKey="aluminum" fill="url(#gAl)" stroke="none" />
 
-            {/* visible lines (these show in legend & tooltip) */}
-            <Line
-              type="monotone"
-              dataKey="copper"
-              name="Copper"
-              stroke={colors.copper}
-              strokeWidth={2.25}
-              dot={false}
-              activeDot={{ r: 4 }}
-              isAnimationActive={false}
-            />
-            <Line
-              type="monotone"
-              dataKey="steel"
-              name="Steel"
-              stroke={colors.steel}
-              strokeWidth={2.25}
-              dot={false}
-              activeDot={{ r: 4 }}
-              isAnimationActive={false}
-            />
-            <Line
-              type="monotone"
-              dataKey="aluminum"
-              name="Aluminum"
-              stroke={colors.aluminum}
-              strokeWidth={2.25}
-              dot={false}
-              activeDot={{ r: 4 }}
-              isAnimationActive={false}
-            />
+            {/* LINES (real series) */}
+            <Line dataKey="copper" name="Copper" stroke={colors.copper} strokeWidth={2.2} dot={false} />
+            <Line dataKey="steel" name="Steel" stroke={colors.steel} strokeWidth={2.2} dot={false} />
+            <Line dataKey="aluminum" name="Aluminum" stroke={colors.aluminum} strokeWidth={2.2} dot={false} />
 
-            {/* gradient lines for subtle fill — hidden from legend & tooltip */}
-            <Line
-              type="monotone"
-              dataKey="copper"
-              stroke="url(#gradCopper)"
-              strokeWidth={0}
-              dot={false}
-              isAnimationActive={false}
-              legendType="none"
-              name={undefined}
-            />
-            <Line
-              type="monotone"
-              dataKey="steel"
-              stroke="url(#gradSteel)"
-              strokeWidth={0}
-              dot={false}
-              isAnimationActive={false}
-              legendType="none"
-              name={undefined}
-            />
-            <Line
-              type="monotone"
-              dataKey="aluminum"
-              stroke="url(#gradAl)"
-              strokeWidth={0}
-              dot={false}
-              isAnimationActive={false}
-              legendType="none"
-              name={undefined}
-            />
-
-            {/* reference dots for latest */}
-            <ReferenceDot
-              x={sampleData[sampleData.length - 1].time}
-              y={latest.copper}
-              r={3}
-              fill={colors.copper}
-              stroke="none"
-            />
-            <ReferenceDot
-              x={sampleData[sampleData.length - 1].time}
-              y={latest.steel}
-              r={3}
-              fill={colors.steel}
-              stroke="none"
-            />
-            <ReferenceDot
-              x={sampleData[sampleData.length - 1].time}
-              y={latest.aluminum}
-              r={3}
-              fill={colors.aluminum}
-              stroke="none"
-            />
+            {/* LATEST POINTS */}
+            <ReferenceDot x={latest.time} y={latest.copper} r={3} fill={colors.copper} />
+            <ReferenceDot x={latest.time} y={latest.steel} r={3} fill={colors.steel} />
+            <ReferenceDot x={latest.time} y={latest.aluminum} r={3} fill={colors.aluminum} />
           </LineChart>
         </ResponsiveContainer>
       </div>
