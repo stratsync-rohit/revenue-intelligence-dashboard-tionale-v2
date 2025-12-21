@@ -20,6 +20,34 @@ const ChatIcon = ({ className = "h-4 w-4" }: { className?: string }) => (
   </svg>
 );
 
+const getLikelihoodStyle = (likelihood: string) => {
+  const l = likelihood.toLowerCase();
+
+  if (l.includes("high")) {
+    return {
+      bg: "rgba(16, 185, 129, 0.08)",
+      border: "rgba(16, 185, 129, 0.45)",
+      text: "rgb(16 185 129)",
+    };
+  }
+
+  if (l.includes("medium")) {
+    return {
+      bg: "rgba(234, 179, 8, 0.08)",
+      border: "rgba(234, 179, 8, 0.45)",
+      text: "rgb(234 179 8)",
+    };
+  }
+
+  // Low / default
+  return {
+    bg: "rgba(100, 116, 139, 0.08)",
+    border: "rgba(100, 116, 139, 0.45)",
+    text: "rgb(100 116 139)",
+  };
+};
+
+
 export type Deal = {
   company: string;
   product: string;
@@ -79,10 +107,32 @@ const DealsSection: React.FC<DealsSectionProps> = ({ deals, onAskAI }) => {
 
               {/* probability pill */}
               <div className="flex-shrink-0">
-                <span className="inline-flex items-center rounded-full bg-gradient-to-br from-indigo-50 to-white px-2 sm:px-3 py-0.5 sm:py-1 text-xs sm:text-sm font-semibold text-indigo-700 ring-1 ring-indigo-100">
-                  {d.likelihood}
-                </span>
-              </div>
+  {(() => {
+    const style = getLikelihoodStyle(d.likelihood);
+
+    return (
+      <span
+        className="
+          inline-flex items-center
+          rounded-full
+          px-2 sm:px-3
+          py-0.5 sm:py-1
+          text-xs sm:text-sm
+          font-semibold
+        "
+        style={{
+          backgroundColor: style.bg,
+          border: `1px solid ${style.border}`,
+          color: style.text,
+          boxShadow: "none",
+        }}
+      >
+        {d.likelihood}
+      </span>
+    );
+  })()}
+</div>
+
             </div>
 
             {/* middle: price + margin */}
@@ -122,12 +172,9 @@ const DealsSection: React.FC<DealsSectionProps> = ({ deals, onAskAI }) => {
               <div className="flex items-center gap-2 w-full sm:w-auto">
                 <button
                   onClick={() => onAskAI?.(d.company)}
-                  className="w-full sm:w-auto flex items-center justify-center gap-1.5 sm:gap-2 rounded-full px-3 sm:px-4 py-1.5 sm:py-2 text-sm sm:text-base font-semibold text-white transition-all touch-manipulation active:scale-[0.98]"
-                  style={{ backgroundColor: 'rgb(var(--color-success))', boxShadow: 'var(--shadow-sm)' }}
-                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgb(var(--color-hover-success))'}
-                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgb(var(--color-success))'}
+                  className="btn-ask-ai w-full sm:w-auto"
                 >
-                  <ChatIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-white" />
+                  <ChatIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-white/70" />
                   Ask AI
                 </button>
               </div>

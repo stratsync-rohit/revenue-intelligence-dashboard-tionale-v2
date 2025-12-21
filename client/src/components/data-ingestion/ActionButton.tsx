@@ -12,17 +12,19 @@ const ActionButton: React.FC<ActionButtonProps> = ({
 }) => {
   if (variant === "primary") {
     return (
-      <button 
-        className="btn-primary w-full sm:w-auto"
-        style={{ backgroundColor: 'rgb(var(--color-success))', boxShadow: 'var(--shadow-sm)' }}
-        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgb(var(--color-hover-success))'}
-        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgb(var(--color-success))'}
-      >
+      <button className="action-btn-primary">
         {children}
       </button>
     );
   }
-  return <button className="btn-secondary w-full sm:w-auto">{children}</button>;
+
+  /* ---------- Secondary ---------- */
+
+  return (
+    <button className="action-btn-secondary">
+      {children}
+    </button>
+  );
 };
 
 export default ActionButton;

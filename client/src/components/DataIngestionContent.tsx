@@ -5,10 +5,10 @@ import MetricCard from "./data-ingestion/MetricCard";
 import { CardMetric, MessageBlockProps } from "./data-ingestion/types";
 
 const metrics: CardMetric[] = [
-  { title: "Messages Processed", value: "1,247", change: "+12%" },
+  { title: "Messages Processed", value: "1,247", change: "-12%" },
   { title: "Products Identified", value: "342", change: "+18%" },
   { title: "Working Capital Impact", value: "$2.4M", change: "+15%" },
-  { title: "Cash Flow Velocity", value: "18 days", change: "-6 days" },
+  { title: "Cash Flow Velocity", value: "18 days", change: "-6" },
 ];
 
 const messages: MessageBlockProps[] = [

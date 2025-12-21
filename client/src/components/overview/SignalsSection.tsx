@@ -67,14 +67,9 @@ const SignalsSection: React.FC<SignalsSectionProps> = ({
           >
             {/* DESKTOP ABSOLUTE BADGE (inside card, near metrics) */}
             <div className="hidden md:block absolute top-3 sm:top-4 right-4 sm:right-6">
-              <div
-                className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 sm:px-3 py-0.5 sm:py-1 text-xs sm:text-sm font-semibold leading-none"
-                aria-hidden="true"
-              >
-                <span className="text-emerald-700">{s.margin}</span>
-                <span className="text-emerald-600 text-xs sm:text-sm font-medium">
-                  margin
-                </span>
+              <div className="badge-margin-desktop" aria-hidden="true">
+                <span className="margin-value">{s.margin}</span>
+                <span className="margin-label">margin</span>
               </div>
             </div>
 
@@ -93,14 +88,9 @@ const SignalsSection: React.FC<SignalsSectionProps> = ({
 
                   {/* mobile badge (shows next to title) */}
                   <div className="md:hidden flex-shrink-0">
-                    <div
-                      className="inline-flex items-center gap-1 rounded-full border border-emerald-200 bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold leading-none"
-                      aria-hidden="true"
-                    >
-                      <span className="text-emerald-700">{s.margin}</span>
-                      <span className="text-emerald-600 text-[10px] font-medium">
-                        margin
-                      </span>
+                    <div className="badge-margin-mobile" aria-hidden="true">
+                      <span className="margin-value">{s.margin}</span>
+                      <span className="margin-label">margin</span>
                     </div>
                   </div>
                 </div>
@@ -151,17 +141,15 @@ const SignalsSection: React.FC<SignalsSectionProps> = ({
 
             {/* ASK AI BUTTON (full width bottom) */}
             <div className="flex w-full justify-end mr-10">
-              <button
-                onClick={() => onAskAI?.(s.name)}
-                className="flex items-center justify-center gap-1.5 sm:gap-2 rounded-full px-3 sm:px-4 py-1.5 sm:py-2 text-sm sm:text-base font-semibold text-white touch-manipulation transition-all"
-                style={{ backgroundColor: 'rgb(var(--color-success))', boxShadow: 'var(--shadow-sm)' }}
-                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgb(var(--color-hover-success))'}
-                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgb(var(--color-success))'}
-                aria-label={`Ask AI about ${s.name}`}
-              >
-                <ChatIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-white" />
-                Ask AI
-              </button>
+            <button
+  onClick={() => onAskAI?.(s.name)}
+  aria-label={`Ask AI about ${s.name}`}
+  className="btn-ask-ai"
+>
+  <ChatIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-white/70" />
+  Ask AI
+</button>
+
             </div>
           </article>
         ))}

@@ -46,8 +46,8 @@ const MessageBlock: React.FC<MessageBlockProps> = ({
             <span className="text-slate-500 text-xs sm:text-sm">{time}</span>
           </div>
 
-          <span className="flex items-center gap-1 rounded-full bg-emerald-50 px-2 sm:px-3 py-0.5 sm:py-1 text-xs sm:text-sm font-medium text-emerald-700 shadow-sm">
-            <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" />
+          <span className="badge-ingested">
+            <span className="badge-ingested-dot" />
             Ingested
           </span>
         </div>
@@ -109,11 +109,11 @@ const MessageBlock: React.FC<MessageBlockProps> = ({
         </section>
 
         {/* ACTION BAR */}
-        <div className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3 pt-3 sm:pt-4 border-t border-slate-100">
-          <ActionButton>View in CRM</ActionButton>
-          <ActionButton>Create Deal</ActionButton>
-          <ActionButton variant="secondary">Generate Quote</ActionButton>
-        </div>
+        <div className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3 pt-4 sm:pt-5 border-t border-slate-200">
+  <ActionButton>View in CRM</ActionButton>
+  <ActionButton>Create Deal</ActionButton>
+  <ActionButton variant="secondary">Generate Quote</ActionButton>
+</div>
       </div>
     </div>
   );

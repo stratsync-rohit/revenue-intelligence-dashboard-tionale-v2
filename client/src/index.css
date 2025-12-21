@@ -299,6 +299,101 @@ html {
     background-clip: text;
   }
 
+  
+  .btn-ask-ai {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.375rem;
+    border-radius: 9999px;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background-color: transparent;
+    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    touch-action: manipulation;
+  }
+
+  .btn-ask-ai:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 1);
+  }
+
+  @media (min-width: 640px) {
+    .btn-ask-ai {
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      line-height: 1.5rem;
+    }
+  }
+
+  /* Margin Badge - Desktop */
+  .badge-margin-desktop {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    border-radius: 9999px;
+ border: 1px solid rgba(34, 197, 94, 0.25); 
+    background-color: transparent;
+    padding: 0.125rem 0.625rem;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .badge-margin-desktop .margin-value {
+    color: rgb(4 120 87);
+  }
+
+  .badge-margin-desktop .margin-label {
+    color: rgb(5 150 105);
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 500;
+  }
+
+  @media (min-width: 640px) {
+    .badge-margin-desktop {
+      padding: 0.25rem 0.75rem;
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+    }
+
+    .badge-margin-desktop .margin-label {
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+    }
+  }
+
+  /* Margin Badge - Mobile */
+  .badge-margin-mobile {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    border-radius: 9999px;
+   border: 1px solid rgba(34, 197, 94, 0.25); 
+    background-color: transparent;
+    padding: 0.125rem 0.5rem;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .badge-margin-mobile .margin-value {
+    color: rgb(4 120 87);
+  }
+
+  .badge-margin-mobile .margin-label {
+    color: rgb(5 150 105);
+    font-size: 10px;
+    font-weight: 500;
+  }
+
   .glass {
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(10px);
@@ -503,4 +598,82 @@ input::placeholder, textarea::placeholder {
 /* Chat input textarea */
 .chat-input-textarea {
   @apply w-full resize-none bg-transparent text-sm sm:text-base text-slate-700 placeholder:text-slate-400 focus:outline-none;
+}
+
+/* Action Button - Primary variant */
+.action-btn-primary {
+  @apply 
+    w-full sm:w-auto
+    rounded-xl
+    px-5 py-2.5
+    text-sm font-medium
+    transition-all duration-200
+    active:scale-[0.98];
+  
+  background-color: rgba(16, 185, 129, 0.08);
+  color: rgb(var(--color-success));
+  border: 1px solid rgba(16, 185, 129, 0.45);
+  box-shadow: none;
+}
+
+.action-btn-primary:hover {
+  background-color: rgba(16, 185, 129, 0.14);
+  box-shadow: none;
+}
+
+/* Action Button - Secondary variant */
+.action-btn-secondary {
+  @apply 
+    w-full sm:w-auto
+    rounded-xl
+    px-5 py-2.5
+    text-sm font-medium
+    transition-all duration-200
+    active:scale-[0.98];
+  
+  background-color: transparent;
+  color: rgb(var(--color-text-primary));
+  border: 1px solid rgb(var(--color-border-light));
+  box-shadow: none;
+}
+
+.action-btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.04);
+}
+/* Ingested Status Badge — Button-style */
+.badge-ingested {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+
+  background-color: rgba(16, 185, 129, 0.08); /* subtle transparent green */
+  border: 1px solid rgba(16, 185, 129, 0.45);
+
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 500;
+
+  color: rgb(16 185 129); /* green text */
+
+  box-shadow: none; /* ❌ no shadow */
+}
+
+@media (min-width: 640px) {
+  .badge-ingested {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    padding: 0.3rem 0.85rem;
+  }
+}
+
+/* Green dot inside badge */
+.badge-ingested-dot {
+  display: inline-block;
+  height: 0.4rem;
+  width: 0.4rem;
+  border-radius: 9999px;
+  background-color: rgb(16 185 129);
 }
