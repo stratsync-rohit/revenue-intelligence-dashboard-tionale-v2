@@ -74,11 +74,11 @@ const MetricCard: React.FC<MetricCardProps> = ({
 
   const showBadge = raw.length > 0;
 
-  /* ✅ ADDITION: negative badge style override */
+  
   const badgeStyle: React.CSSProperties = isNegative
     ? {
-        backgroundColor: "rgb(239 68 68)", // medium red
-        color: "#ffffff", // white text
+       backgroundColor: "rgb(254 226 226)", 
+
       }
     : {};
 

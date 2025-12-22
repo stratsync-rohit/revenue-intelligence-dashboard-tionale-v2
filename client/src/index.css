@@ -9,41 +9,43 @@
   :root {
     --footer-height: 64px; 
 
-    /* PRIMARY COLOR PALETTE */
-    --color-primary: 6 182 212;         /* Electric cyan-blue - active/focus */
-    --color-primary-dark: 8 145 178;    /* Darker cyan for hover */
-    --color-primary-light: 34 211 238;  /* Lighter cyan for highlights */ 
-    --color-primary-50: 207 250 254;    /* Very light cyan */
-    --color-primary-100: 165 243 252;   /* Light cyan */   
+     
+/* PRIMARY COLOR PALETTE (same) */
+--color-primary: 6 182 212;         
+--color-primary-dark: 8 145 178;    
+--color-primary-light: 34 211 238;  
+--color-primary-50: 207 250 254;    
+--color-primary-100: 165 243 252;   
 
-    /* SECONDARY/ACCENT COLORS */
-    --color-secondary: 14 165 233;      /* Soft cyan-blue for AI actions */
-    --color-accent: 6 182 212;          /* Primary electric cyan */
-    --color-success: 16 185 129;        /* Reserved for profit/margin/positive actions */          
-    --color-hover-success: 5 150 105;   /* Deeper green for hover confidence */
-    --color-warning: 251 191 36;        /* Amber for urgency/expiring opportunities */
-    --color-danger: 239 68 68;          /* Red for errors/critical */         
-    --color-info: 14 165 233;           /* Info cyan */          
-    /* BACKGROUND COLORS */
-    --color-bg-primary: 17 24 39;  /* Card surfaces - slightly lighter navy */
-    --color-bg-secondary: 11  15 25; /* Main background - very dark navy (almost black-blue) */
-    --color-bg-tertiary: 24 33 50;  /* Elevated/active cards - one step brighter */
-    --color-bg-hover: 30 41 59;     /* Hover state - clear elevation */
-    --color-bg-dark: 7 11 20;       /* Deeper than main */
-    --color-bg-darker: 3 7 14;      /* Darkest layer */            
+/* SECONDARY / ACCENT (same) */
+--color-secondary: 14 165 233;      
+--color-accent: 6 182 212;          
+--color-success: 16 185 129;                 
+--color-hover-success: 5 150 105;  
+--color-warning: 251 191 36;        
+--color-danger: 239 68 68;          
+--color-info: 14 165 233;           
 
-    /* TEXT COLORS */
-    --color-text-primary: 248 250 252;      /* Brightest - key numbers, outcomes */
-    --color-text-secondary: 203 213 225;    /* Softer - labels, descriptions */
-    --color-text-tertiary: 148 163 184;     /* Muted - timestamps, metadata */
-    --color-text-quaternary: 100 116 139;   /* Most subtle - logs, fine print */
-    --color-text-inverse: 11 15 25;         /* For light backgrounds */      
+/* ✅ WHITE THEME BACKGROUNDS */
+--color-bg-primary: 255 255 255;     /* Cards */
+--color-bg-secondary: 248 250 252;   /* Page background */
+--color-bg-tertiary: 241 245 249;    /* Elevated cards */
+--color-bg-hover: 226 232 240;       /* Hover state */
+--color-bg-dark: 241 245 249;        
+--color-bg-darker: 226 232 240;      
 
-    /* BORDER COLORS */
-    --color-border-light: 30 41 59;         /* Subtle card borders */
-    --color-border-medium: 51 65 85;        /* Medium emphasis */
-    --color-border-dark: 71 85 105;         /* Strong definition */
-    --color-border-focus: 6 182 212;        /* Electric cyan for focus states */     
+/* ✅ TEXT COLORS FOR WHITE UI */
+--color-text-primary: 15 23 42;      /* Headings */
+--color-text-secondary: 51 65 85;    /* Body text */
+--color-text-tertiary: 100 116 139;  /* Muted */
+--color-text-quaternary: 148 163 184;
+
+/* ✅ BORDERS */
+--color-border-light: 226 232 240;
+--color-border-medium: 203 213 225;
+--color-border-dark: 148 163 184;
+--color-border-focus: 6 182 212;
+
 
     /* CHART COLORS */
     --color-chart-1: 6 182 212;     /* Primary cyan */
@@ -70,7 +72,7 @@
 
     /* SHADOWS */
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.5);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.6), 0 2px 4px -2px rgb(0 0 0 / 0.5);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.2), 0 2px 4px -2px rgb(0 0 0 / 0.4);
     --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.7), 0 4px 6px -4px rgb(0 0 0 / 0.6);
     --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.8), 0 8px 10px -6px rgb(0 0 0 / 0.7);
     --shadow-primary: 0 0 20px -5px rgb(6 182 212 / 0.4), 0 0 40px -10px rgb(6 182 212 / 0.2);  /* Subtle cyan glow for best opportunity */
@@ -161,6 +163,13 @@ html {
   }
 
   .btn-primary:hover {
+    /* ChartSection custom styles */
+    .chart-section-custom {
+      /* Example: add padding, background, or border if needed */
+      /* padding: 1rem; */
+      /* background: #fff; */
+      /* border-radius: 1rem; */
+    }
     background-color: rgb(var(--color-primary-dark));
     box-shadow: var(--shadow-primary);
     transform: translateY(-1px);
@@ -180,6 +189,7 @@ html {
   }
 
   /* CARD (unified for stats/metrics) */
+  /* StatCard.tsx and DealCard.tsx use this class */
   .card {
     display: flex;
     flex-direction: column;
@@ -195,10 +205,7 @@ html {
     overflow: hidden;
   }
 
-  .card:hover {
-    box-shadow: var(--shadow-lg);
-    transform: translateY(-2px);
-  }
+ 
 
   .card-flat {
     background-color: rgb(var(--color-bg-primary));
@@ -310,17 +317,14 @@ html {
     font-size: 0.875rem;
     line-height: 1.25rem;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+     color: #222121; /* Changed to text-black */
+    border: 1px solid rgba(104, 55, 55, 0.15);
     background-color: transparent;
     transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
     touch-action: manipulation;
   }
 
-  .btn-ask-ai:hover {
-    background-color: rgba(255, 255, 255, 0.05);
-    color: rgba(255, 255, 255, 1);
-  }
+  
 
   @media (min-width: 640px) {
     .btn-ask-ai {

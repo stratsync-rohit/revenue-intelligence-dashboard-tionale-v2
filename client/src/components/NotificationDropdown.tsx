@@ -18,6 +18,9 @@ export function NotificationDropdown() {
   const [notifications] = useState<Notification[]>(notificationsData);
   const ref = useRef<HTMLDivElement>(null);
 
+  // Check if there are any unread notifications
+  const hasUnread = notifications.some(n => n.isRead === false);
+
   /* Close on outside click */
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -52,6 +55,9 @@ export function NotificationDropdown() {
         className="relative p-2 hover:bg-[rgba(var(--color-accent-primary),0.1)] rounded-full transition-colors"
       >
         <Bell className="w-6 h-6 text-[rgb(var(--color-text-secondary))]" />
+        {hasUnread && (
+          <span className="absolute top-1 right-1 block w-2.5 h-2.5 bg-red-600 rounded-full ring-2 ring-white " />
+        )}
       </button>
 
       {/* Dropdown */}

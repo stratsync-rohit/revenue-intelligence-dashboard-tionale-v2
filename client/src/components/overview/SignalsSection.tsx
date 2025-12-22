@@ -43,17 +43,31 @@ const SignalsSection: React.FC<SignalsSectionProps> = ({
       {/* HEADER */}
       <div className="mb-3 sm:mb-4 flex items-center justify-between">
         <div>
-          <h2 className="text-base sm:text-lg font-semibold" style={{ color: 'rgb(var(--color-text-primary))' }}>
+          <h2
+            className="text-base sm:text-lg font-semibold"
+            style={{ color: "rgb(var(--color-text-primary))" }}
+          >
             Active Arbitrage Signals
           </h2>
-          <p className="text-xs sm:text-sm" style={{ color: 'rgb(var(--color-text-tertiary))' }}>
+          <p
+            className="text-xs sm:text-sm"
+            style={{ color: "rgb(var(--color-text-tertiary))" }}
+          >
             Real-time price opportunities across markets
           </p>
         </div>
 
         <div className="flex items-center gap-1.5 sm:gap-2">
-          <span className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full" style={{ backgroundColor: 'rgb(var(--color-status-active))' }} />
-          <span className="text-xs sm:text-sm font-medium" style={{ color: 'rgb(var(--color-success))' }}>Live</span>
+          <span
+            className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full"
+            style={{ backgroundColor: "rgb(var(--color-status-active))" }}
+          />
+          <span
+            className="text-xs sm:text-sm font-medium"
+            style={{ color: "rgb(var(--color-success))" }}
+          >
+            Live
+          </span>
         </div>
       </div>
 
@@ -80,7 +94,7 @@ const SignalsSection: React.FC<SignalsSectionProps> = ({
                   <h3
                     id={`signal-${s.name}`}
                     className="text-sm sm:text-base font-semibold whitespace-normal break-words"
-                    style={{ color: 'rgb(var(--color-text-primary))' }}
+                    style={{ color: "rgb(var(--color-text-primary))" }}
                     title={s.name}
                   >
                     {s.name}
@@ -97,7 +111,7 @@ const SignalsSection: React.FC<SignalsSectionProps> = ({
 
                 <p
                   className="mt-0.5 sm:mt-1 text-xs sm:text-sm truncate"
-                  style={{ color: 'rgb(var(--color-text-tertiary))' }}
+                  style={{ color: "rgb(var(--color-text-tertiary))" }}
                   title={s.route}
                 >
                   {s.route}
@@ -108,48 +122,82 @@ const SignalsSection: React.FC<SignalsSectionProps> = ({
             {/* METRICS GRID */}
             <div className="mt-3 sm:mt-4 grid grid-cols-2 gap-y-2 gap-x-3 sm:gap-x-6 text-sm md:grid-cols-4 md:gap-x-8">
               <div>
-                <p className="text-xs sm:text-sm" style={{ color: 'rgb(var(--color-text-tertiary))' }}>Buy Price</p>
-                <p className="mt-0.5 sm:mt-1 text-sm sm:text-base font-semibold" style={{ color: 'rgb(var(--color-text-primary))' }}>
+                <p
+                  className="text-xs sm:text-sm"
+                  style={{ color: "rgb(var(--color-text-tertiary))" }}
+                >
+                  Buy Price
+                </p>
+                <p
+                  className="mt-0.5 sm:mt-1 text-sm sm:text-base font-semibold"
+                  style={{ color: "rgb(var(--color-text-primary))" }}
+                >
                   {s.buyPrice}
                 </p>
               </div>
 
               <div>
-                <p className="text-xs sm:text-sm" style={{ color: 'rgb(var(--color-text-tertiary))' }}>Sell Price</p>
-                <p className="mt-0.5 sm:mt-1 text-sm sm:text-base font-semibold" style={{ color: 'rgb(var(--color-text-primary))' }}>
+                <p
+                  className="text-xs sm:text-sm"
+                  style={{ color: "rgb(var(--color-text-tertiary))" }}
+                >
+                  Sell Price
+                </p>
+                <p
+                  className="mt-0.5 sm:mt-1 text-sm sm:text-base font-semibold"
+                  style={{ color: "rgb(var(--color-text-primary))" }}
+                >
                   {s.sellPrice}
                 </p>
               </div>
 
               <div>
-                <p className="text-xs sm:text-sm" style={{ color: 'rgb(var(--color-text-tertiary))' }}>Confidence</p>
-                <p className="mt-0.5 sm:mt-1 text-sm sm:text-base font-semibold" style={{ color: 'rgb(var(--color-accent))' }}>
+                <p
+                  className="text-xs sm:text-sm"
+                  style={{ color: "rgb(var(--color-text-tertiary))" }}
+                >
+                  Confidence
+                </p>
+                <p
+                  className="mt-0.5 sm:mt-1 text-sm sm:text-base font-semibold"
+                  style={{ color: "rgb(var(--color-accent))" }}
+                >
                   {s.confidence}
                 </p>
               </div>
 
               <div>
-                <p className="text-xs sm:text-sm" style={{ color: 'rgb(var(--color-text-tertiary))' }}>Window</p>
-                <p className="mt-0.5 sm:mt-1 text-sm sm:text-base font-semibold" style={{ color: 'rgb(var(--color-warning))' }}>
+                <p
+                  className="text-xs sm:text-sm"
+                  style={{ color: "rgb(var(--color-text-tertiary))" }}
+                >
+                  Window
+                </p>
+                <p
+                  className="mt-0.5 sm:mt-1 text-sm sm:text-base font-semibold"
+                  style={{ color: "rgb(var(--color-warning))" }}
+                >
                   {s.window}
                 </p>
               </div>
             </div>
 
             {/* DIVIDER */}
-            <div className="my-3 sm:my-4 border-t" style={{ borderColor: 'rgb(var(--color-border-medium))' }} />
+            <div
+              className="my-3 sm:my-4 border-t"
+              style={{ borderColor: "rgb(var(--color-border-medium))" }}
+            />
 
             {/* ASK AI BUTTON (full width bottom) */}
             <div className="flex w-full justify-end mr-10">
-            <button
-  onClick={() => onAskAI?.(s.name)}
-  aria-label={`Ask AI about ${s.name}`}
-  className="btn-ask-ai"
->
-  <ChatIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-white/70" />
-  Ask AI
-</button>
-
+              <button
+                onClick={() => onAskAI?.(s.name)}
+                aria-label={`Ask AI about ${s.name}`}
+                className="btn-ask-ai"
+              >
+                <ChatIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4 " />
+                Ask AI
+              </button>
             </div>
           </article>
         ))}
