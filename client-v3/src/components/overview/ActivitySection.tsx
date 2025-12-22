@@ -30,7 +30,7 @@ const ActivitySection: React.FC<ActivitySectionProps> = ({ activities }) => {
                 className={`mt-0.5 sm:mt-1 h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full ${a.color} flex-shrink-0`}
               />
               <div>
-                <p className="text-xs sm:text-sm font-medium break-words" style={{ color: 'rgb(var(--color-text-secondary))' }}>
+                <p className="text-xs sm:text-sm font-medium break-words" style={{ color: 'rgb(var(--color-text-tertiary))' }}>
                   {a.label}
                 </p>
                 <p className="text-xs sm:text-sm" style={{ color: 'rgb(var(--color-text-quaternary))' }}>{a.time}</p>

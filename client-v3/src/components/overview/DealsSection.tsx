@@ -47,7 +47,6 @@ const getLikelihoodStyle = (likelihood: string) => {
   };
 };
 
-
 export type Deal = {
   company: string;
   product: string;
@@ -67,16 +66,20 @@ const DealsSection: React.FC<DealsSectionProps> = ({ deals, onAskAI }) => {
     <section className="card-flat">
       <div className="flex items-start justify-between gap-3 sm:gap-4">
         <div>
-          <h3 className="text-base sm:text-lg font-semibold" style={{ color: 'rgb(var(--color-text-primary))' }}>
+          <h3
+            className="text-base sm:text-lg font-semibold"
+            style={{ color: "rgb(var(--color-text-primary))" }}
+          >
             AI-Powered Deal Recommendations
           </h3>
-          <p className="mt-1 text-sm sm:text-base" style={{ color: 'rgb(var(--color-text-tertiary))' }}>
+          <p
+            className="mt-1 text-sm sm:text-base"
+            style={{ color: "rgb(var(--color-text-secondary))" }}
+          >
             Proactive opportunities surfaced from market data and customer
             intent
           </p>
         </div>
-
-       
       </div>
 
       <div className="mt-4 sm:mt-5 md:mt-6 grid grid-cols-1 gap-3 sm:gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -89,17 +92,18 @@ const DealsSection: React.FC<DealsSectionProps> = ({ deals, onAskAI }) => {
             {/* top row: company / product + likelihood */}
             <div className="flex items-start justify-between gap-2 sm:gap-3">
               <div className="flex items-start gap-2 sm:gap-3 min-w-0">
-                
-
                 <div className="min-w-0">
                   <h4
                     id={`deal-${d.company}`}
                     className="text-sm sm:text-base font-semibold truncate"
-                    style={{ color: 'rgb(var(--color-text-primary))' }}
+                    style={{ color: "rgb(var(--color-text-primary))" }}
                   >
                     {d.company}
                   </h4>
-                  <p className="mt-0.5 text-xs sm:text-sm truncate" style={{ color: 'rgb(var(--color-text-tertiary))' }}>
+                  <p
+                    className="mt-0.5 text-xs sm:text-sm truncate"
+                    style={{ color: "rgb(var(--color-text-tertiary))" }}
+                  >
                     {d.product}
                   </p>
                 </div>
@@ -107,12 +111,12 @@ const DealsSection: React.FC<DealsSectionProps> = ({ deals, onAskAI }) => {
 
               {/* probability pill */}
               <div className="flex-shrink-0">
-  {(() => {
-    const style = getLikelihoodStyle(d.likelihood);
+                {(() => {
+                  const style = getLikelihoodStyle(d.likelihood);
 
-    return (
-      <span
-        className="
+                  return (
+                    <span
+                      className="
           inline-flex items-center
           rounded-full
           px-2 sm:px-3
@@ -120,40 +124,58 @@ const DealsSection: React.FC<DealsSectionProps> = ({ deals, onAskAI }) => {
           text-xs sm:text-sm
           font-semibold
         "
-        style={{
-          backgroundColor: style.bg,
-          border: `1px solid ${style.border}`,
-          color: style.text,
-          boxShadow: "none",
-        }}
-      >
-        {d.likelihood}
-      </span>
-    );
-  })()}
-</div>
-
+                      style={{
+                        backgroundColor: style.bg,
+                        border: `1px solid ${style.border}`,
+                        color: style.text,
+                        boxShadow: "none",
+                      }}
+                    >
+                      {d.likelihood}
+                    </span>
+                  );
+                })()}
+              </div>
             </div>
 
             {/* middle: price + margin */}
             <div className="mt-3 sm:mt-4 flex items-center justify-between gap-3 sm:gap-4">
               <div>
-                <p className="text-xs sm:text-sm" style={{ color: 'rgb(var(--color-text-tertiary))' }}>Suggested Price</p>
-                <div className="mt-0.5 sm:mt-1 text-sm sm:text-base font-semibold" style={{ color: 'rgb(var(--color-text-primary))' }}>
+                <p
+                  className="text-xs sm:text-sm"
+                  style={{ color: "rgb(var(--color-text-primary))" }}
+                >
+                  Suggested Price
+                </p>
+                <div
+                  className="mt-0.5 sm:mt-1 text-sm sm:text-base font-semibold"
+                  style={{ color: "rgb(var(--color-text-primary))" }}
+                >
                   {d.suggestedPrice}
                 </div>
               </div>
 
               <div className="text-right">
-                <p className="text-xs sm:text-sm" style={{ color: 'rgb(var(--color-text-tertiary))' }}>Expected Margin</p>
-                <div className="mt-0.5 sm:mt-1 text-sm sm:text-base font-semibold" style={{ color: 'rgb(var(--color-success))' }}>
+                <p
+                  className="text-xs sm:text-sm"
+                  style={{ color: "rgb(var(--color-text-tertiary))" }}
+                >
+                  Expected Margin
+                </p>
+                <div
+                  className="mt-0.5 sm:mt-1 text-sm sm:text-base font-semibold"
+                  style={{ color: "rgb(var(--color-success))" }}
+                >
                   {d.expectedMargin}
                 </div>
               </div>
             </div>
 
             {/* divider */}
-            <div className="my-3 sm:my-4 h-px w-full" style={{ backgroundColor: 'rgb(var(--color-border-light))' }} />
+            <div
+              className="my-3 sm:my-4 h-px w-full"
+              style={{ backgroundColor: "rgb(var(--color-border-light))" }}
+            />
 
             {/* tags + action */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
@@ -162,7 +184,11 @@ const DealsSection: React.FC<DealsSectionProps> = ({ deals, onAskAI }) => {
                   <span
                     key={tag}
                     className="rounded-full px-2 sm:px-2.5 py-0.5 text-xs sm:text-sm font-medium"
-                    style={{ backgroundColor: 'rgb(var(--color-bg-secondary))', color: 'rgb(var(--color-text-tertiary))', border: '1px solid rgb(var(--color-border-light))' }}
+                    style={{
+                      backgroundColor: "rgb(var(--color-bg-secondary))",
+                      color: "rgb(var(--color-text-tertiary))",
+                      border: "1px solid rgb(var(--color-border-light))",
+                    }}
                   >
                     {tag}
                   </span>

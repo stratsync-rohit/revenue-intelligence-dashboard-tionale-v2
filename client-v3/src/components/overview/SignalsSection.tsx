@@ -42,16 +42,17 @@ const SignalsSection: React.FC<SignalsSectionProps> = ({
     <div className="card-flat xl:col-span-2">
       {/* HEADER */}
       <div className="mb-3 sm:mb-4 flex items-center justify-between">
-        <div>
+        <div className="space-y-1">
           <h2
-            className="text-base sm:text-lg font-semibold"
+            className="text-base sm:text-lg font-semibold leading-tight"
             style={{ color: "rgb(var(--color-text-primary))" }}
           >
             Active Arbitrage Signals
           </h2>
+
           <p
-            className="text-xs sm:text-sm"
-            style={{ color: "rgb(var(--color-text-tertiary))" }}
+            className="text-xs sm:text-sm leading-relaxed"
+            style={{ color: "rgb(var(--color-text-secondary))" }}
           >
             Real-time price opportunities across markets
           </p>
@@ -120,61 +121,65 @@ const SignalsSection: React.FC<SignalsSectionProps> = ({
             </div>
 
             {/* METRICS GRID */}
-            <div className="mt-3 sm:mt-4 grid grid-cols-2 gap-y-2 gap-x-3 sm:gap-x-6 text-sm md:grid-cols-4 md:gap-x-8">
+            <div className="mt-3 sm:mt-4 grid grid-cols-2 gap-y-2 gap-x-3 text-sm sm:grid-cols-4 sm:gap-x-6 md:gap-x-8">
+              {/* Buy Price */}
               <div>
                 <p
-                  className="text-xs sm:text-sm"
+                  className="text-xs sm:text-sm leading-tight"
                   style={{ color: "rgb(var(--color-text-tertiary))" }}
                 >
                   Buy Price
                 </p>
                 <p
-                  className="mt-0.5 sm:mt-1 text-sm sm:text-base font-semibold"
+                  className="mt-0.5 sm:mt-1 text-sm sm:text-base font-semibold leading-tight"
                   style={{ color: "rgb(var(--color-text-primary))" }}
                 >
                   {s.buyPrice}
                 </p>
               </div>
 
+              {/* Sell Price */}
               <div>
                 <p
-                  className="text-xs sm:text-sm"
+                  className="text-xs sm:text-sm leading-tight"
                   style={{ color: "rgb(var(--color-text-tertiary))" }}
                 >
                   Sell Price
                 </p>
                 <p
-                  className="mt-0.5 sm:mt-1 text-sm sm:text-base font-semibold"
+                  className="mt-0.5 sm:mt-1 text-sm sm:text-base font-semibold leading-tight"
                   style={{ color: "rgb(var(--color-text-primary))" }}
                 >
                   {s.sellPrice}
                 </p>
               </div>
 
+              {/* Confidence */}
               <div>
                 <p
-                  className="text-xs sm:text-sm"
+                  className="text-xs sm:text-sm leading-tight"
                   style={{ color: "rgb(var(--color-text-tertiary))" }}
                 >
                   Confidence
                 </p>
                 <p
-                  className="mt-0.5 sm:mt-1 text-sm sm:text-base font-semibold"
-                  style={{ color: "rgb(var(--color-accent))" }}
+                  className="mt-0.5 sm:mt-1 text-sm sm:text-base font-semibold leading-tight"
+                  style={{ color: "rgb(var(--color-info))" }}
                 >
                   {s.confidence}
                 </p>
               </div>
 
+              {/* Window */}
               <div>
                 <p
-                  className="text-xs sm:text-sm"
+                  className="text-xs sm:text-sm leading-tight"
                   style={{ color: "rgb(var(--color-text-tertiary))" }}
                 >
                   Window
                 </p>
                 <p
-                  className="mt-0.5 sm:mt-1 text-sm sm:text-base font-semibold"
+                  className="mt-0.5 sm:mt-1 text-sm sm:text-base font-semibold leading-tight"
                   style={{ color: "rgb(var(--color-warning))" }}
                 >
                   {s.window}
@@ -195,8 +200,8 @@ const SignalsSection: React.FC<SignalsSectionProps> = ({
                 aria-label={`Ask AI about ${s.name}`}
                 className="btn-ask-ai"
               >
-                <ChatIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4 " />
-                Ask AI
+                <ChatIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4 btn-ask-ai-icon" />
+                <span>Ask AI</span>
               </button>
             </div>
           </article>

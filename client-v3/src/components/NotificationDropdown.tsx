@@ -3,23 +3,68 @@ import { useState, useEffect, useRef } from "react";
 import { Bell } from "lucide-react";
 import notificationsData from "../data/notifications.json";
 
+/* =========================
+   TYPES
+========================= */
+
+type NotificationType = "success" | "warning" | "info" | "primary" | "default";
+
 type Notification = {
   id: number;
-  type: string;
+  type: NotificationType;
   title: string;
   message: string;
   time: string;
   icon: string;
-  iconBg: string;
+  isRead: boolean;
 };
+
+/* =========================
+   ICON STYLE (SEMANTIC)
+========================= */
+
+const getIconStyle = (type: NotificationType) => {
+  switch (type) {
+    case "success":
+      return {
+        backgroundColor: "rgb(var(--color-success))",
+        color: "rgb(var(--color-text-white))",
+      };
+    case "warning":
+      return {
+        backgroundColor: "rgb(var(--color-warning))",
+        color: "rgb(var(--color-text-primary))",
+      };
+    case "info":
+      return {
+        backgroundColor: "rgb(var(--color-info))",
+        color: "rgb(var(--color-text-white))",
+      };
+    case "primary":
+      return {
+        backgroundColor: "rgb(var(--color-primary))",
+        color: "rgb(var(--color-text-white))",
+      };
+    default:
+      return {
+        backgroundColor: "rgb(var(--color-border-medium))",
+        color: "rgb(var(--color-text-primary))",
+      };
+  }
+};
+
+/* =========================
+   COMPONENT
+========================= */
 
 export function NotificationDropdown() {
   const [isOpen, setIsOpen] = useState(false);
-  const [notifications] = useState<Notification[]>(notificationsData);
-  const ref = useRef<HTMLDivElement>(null);
+  const [notifications] = useState<Notification[]>(
+    notificationsData as Notification[]
+  );
 
-  // Check if there are any unread notifications
-  const hasUnread = notifications.some(n => n.isRead === false);
+  const ref = useRef<HTMLDivElement>(null);
+  const hasUnread = notifications.some(n => !n.isRead);
 
   /* Close on outside click */
   useEffect(() => {
@@ -32,97 +77,102 @@ export function NotificationDropdown() {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  const getBgColor = (type: string) => {
-    switch (type) {
-      case "success":
-        return "bg-green-500";
-      case "warning":
-        return "bg-yellow-500";
-      case "info":
-        return "bg-blue-500";
-      case "primary":
-        return "bg-purple-500";
-      default:
-        return "bg-gray-500";
-    }
-  };
-
   return (
     <div ref={ref} className="relative">
-      {/* Bell Icon Button */}
+      {/* Bell Button */}
       <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="relative p-2 hover:bg-[rgba(var(--color-accent-primary),0.1)] rounded-full transition-colors"
+        onClick={() => setIsOpen(v => !v)}
+        aria-label="Notifications"
+        className="relative p-2 rounded-full transition-colors"
       >
-        <Bell className="w-6 h-6 text-[rgb(var(--color-text-secondary))]" />
+        <Bell
+          className="w-6 h-6"
+          style={{ color: "rgb(var(--color-text-secondary))" }}
+        />
+
         {hasUnread && (
-          <span className="absolute top-1 right-1 block w-2.5 h-2.5 bg-red-600 rounded-full ring-2 ring-white " />
+          <span
+            className="absolute top-2 right-2 block w-2 h-2 rounded-full"
+            style={{ backgroundColor: "rgb(var(--color-danger))" }}
+          />
         )}
       </button>
 
-      {/* Dropdown */}
+      {/* DROPDOWN */}
       {isOpen && (
-  <div
-  className="
-    absolute right-0 mt-3
-    w-[calc(100vw-2rem)] sm:w-[380px] md:w-[420px]
-    max-w-[420px]
-    z-[9999]
-    bg-[rgba(8,12,20,0.75)]
-    backdrop-blur-2xl
-    border border-white/10
-    rounded-2xl
-    shadow-[0_30px_80px_rgba(0,0,0,0.65)]
-    overflow-hidden
-  "
->
+        <div
+          className="absolute right-0 mt-3 z-[9999] overflow-hidden"
+          style={{
+            width: "min(420px, calc(100vw - 2rem))",
 
-    {/* Notifications List */}
-    <div className="max-h-[60vh] sm:max-h-[420px] overflow-y-auto divide-y divide-white/5">
-      {notifications.length === 0 ? (
-        <div className="px-4 py-10 text-center text-[rgb(var(--color-text-secondary))]">
-          <Bell className="w-12 h-12 mx-auto mb-3 opacity-30" />
-          <p>No notifications</p>
-        </div>
-      ) : (
-        notifications.map((notification) => (
-          <div
-            key={notification.id}
-            className="px-4 py-3 hover:bg-white/5 transition-colors"
-          >
-            <div className="flex items-start gap-3">
-              
-              {/* Icon */}
-              <div
-                className={`${getBgColor(
-                  notification.type
-                )} w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 text-white font-semibold text-sm`}
-              >
-                {notification.icon}
-              </div>
+            /* 🔥 BACKGROUND FIXED HERE */
+            backgroundColor: "rgba(15, 23, 42, 0.85)", // slate-900 glass
+            backdropFilter: "blur(28px)",
 
-              {/* Content */}
-              <div className="flex-1 min-w-0">
-                <h4 className="text-sm font-semibold text-white leading-snug">
-                  {notification.title}
-                </h4>
-
-                <p className="text-xs text-white/70 mt-1 line-clamp-2">
-                  {notification.message}
+            border: "1px solid rgba(255,255,255,0.08)",
+            borderRadius: 18,
+            boxShadow: "0 30px 80px rgba(0,0,0,0.65)",
+          }}
+        >
+          {/* LIST */}
+          <div className="max-h-[60vh] sm:max-h-[420px] overflow-y-auto divide-y divide-white/5">
+            {notifications.length === 0 ? (
+              <div className="px-4 py-10 text-center">
+                <Bell className="w-12 h-12 mx-auto mb-3 opacity-30" />
+                <p style={{ color: "rgba(255,255,255,0.6)" }}>
+                  No notifications
                 </p>
-
-                <span className="text-xs text-white/40 mt-2 block">
-                  {notification.time}
-                </span>
               </div>
-            </div>
-          </div>
-        ))
-      )}
-    </div>
-  </div>
-)}
+            ) : (
+              notifications.map(n => {
+                const iconStyle = getIconStyle(n.type);
 
+                return (
+                  <div
+                    key={n.id}
+                    className="px-4 py-3 transition-colors hover:bg-white/5"
+                  >
+                    <div className="flex items-start gap-3">
+                      {/* ICON */}
+                      <div
+                        className="w-9 h-9 rounded-full flex items-center justify-center
+                                   flex-shrink-0 text-sm font-semibold"
+                        style={iconStyle}
+                      >
+                        {n.icon}
+                      </div>
+
+                      {/* CONTENT */}
+                      <div className="flex-1 min-w-0">
+                        <h4
+                          className="text-sm font-semibold leading-snug"
+                          style={{ color: "rgb(var(--color-text-white))" }}
+                        >
+                          {n.title}
+                        </h4>
+
+                        <p
+                          className="text-xs mt-1 line-clamp-2"
+                          style={{ color: "rgba(255,255,255,0.7)" }}
+                        >
+                          {n.message}
+                        </p>
+
+                        <span
+                          className="text-xs mt-2 block"
+                          style={{ color: "rgba(255,255,255,0.4)" }}
+                        >
+                          {n.time}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

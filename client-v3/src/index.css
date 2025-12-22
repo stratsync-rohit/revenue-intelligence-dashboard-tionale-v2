@@ -105,11 +105,11 @@
 /* 👉 High emphasis text
    Use: Headings, prices, key numbers */
 
---color-text-secondary: 51 65 85;    
+--color-text-tertiary: 51 65 85;    
 /* 👉 Standard reading text
    Use: Paragraphs, tables, form values */
 
---color-text-tertiary: 100 116 139;  
+--color-text-secondary: 100 116 139;  
 /* 👉 Muted information
    Use: Labels, timestamps, helper text */
 
@@ -440,7 +440,6 @@ html {
     font-size: 0.875rem;
     line-height: 1.25rem;
     font-weight: 500;
-    color: #222121; /* Changed to text-black */
     border: 1px solid rgba(104, 55, 55, 0.15);
     background-color: transparent;
     transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);

@@ -84,48 +84,53 @@ const MetricCard: React.FC<MetricCardProps> = ({
 
   return (
     <article
-      className={`card ${className ?? ""}`}
-      aria-label={`Metric: ${title}`}
-      style={style}
+  className={`card ${className ?? ""}`}
+  aria-label={`Metric: ${title}`}
+  style={style}
+>
+  {/* Header */}
+  <div className="card-header flex items-center gap-2">
+    <p
+      className="stat-card-label font-medium uppercase leading-tight tracking-wide
+                 text-[10px] sm:text-xs md:text-sm truncate"
+      style={{ color: "rgb(var(--color-text-tertiary))" }}
     >
-      <div className="card-header" style={{ alignItems: "center", gap: 8 }}>
-        <p
-          className="stat-card-label font-medium uppercase leading-tight tracking-wide text-[10px] sm:text-xs md:text-sm"
-          style={{ color: "rgb(var(--color-text-secondary))", margin: 0 }}
-        >
-          {title}
-        </p>
+      {title}
+    </p>
 
-        {showBadge ? (
-          <div
-            className={`badge ${toneClass} ${extraClass}`}
-            title={raw}
-            aria-hidden={false}
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 6,
-              ...badgeStyle, // ✅ applied here
-            }}
-          >
-            {isPositive && !isDuration && <UpIcon />}
-            {isNegative && !isDuration && <DownIcon />}
-            <span style={{ fontSize: 12, lineHeight: 1 }}>{raw}</span>
-          </div>
-        ) : (
-          <div style={{ width: 0, height: 0 }} aria-hidden />
-        )}
+    {showBadge && (
+      <div
+        className={`badge ${toneClass} ${extraClass}`}
+        title={raw}
+        aria-label={raw}
+        style={{
+          display: "inline-flex",
+          alignItems: "center",
+          gap: 6,
+          ...badgeStyle, // dynamic override stays
+        }}
+      >
+        {isPositive && !isDuration && <UpIcon />}
+        {isNegative && !isDuration && <DownIcon />}
+        <span className="text-xs leading-none">
+          {raw}
+        </span>
       </div>
+    )}
+  </div>
 
-      <div className="stat-value" style={{ marginTop: 6 }}>
-        <p
-          className="font-semibold tracking-tight text-[1.15rem] sm:text-[1.35rem] md:text-[1.6rem]"
-          style={{ color: "rgb(var(--color-text-primary))", margin: 0 }}
-        >
-          {value}
-        </p>
-      </div>
-    </article>
+  {/* Value */}
+  <div className="stat-value mt-1.5">
+    <p
+      className="font-semibold tracking-tight
+                 text-[1.15rem] sm:text-[1.35rem] md:text-[1.6rem]"
+      style={{ color: "rgb(var(--color-text-primary))" }}
+    >
+      {value}
+    </p>
+  </div>
+</article>
+
   );
 };
 
