@@ -56,7 +56,7 @@ export function NotificationDropdown() {
       >
         <Bell className="w-6 h-6 text-[rgb(var(--color-text-secondary))]" />
         {hasUnread && (
-          <span className="absolute top-1 right-1 block w-2.5 h-2.5 bg-red-600 rounded-full ring-2 ring-white " />
+          <span className="absolute top-1 right-1 block w-2.5 h-2.5 bg-red-600 rounded-full " />
         )}
       </button>
 
