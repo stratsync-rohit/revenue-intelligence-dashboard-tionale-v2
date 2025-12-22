@@ -1,0 +1,242 @@
+[
+  {
+    "id": 1,
+    "type": "success",
+    "icon": "D",
+    "iconBg": "success",
+    "title": "New deal closed",
+    "message": "Acme Corp deal worth $50,000 has been successfully closed",
+    "time": "2 minutes ago",
+    "isRead": false
+  },
+  {
+    "id": 2,
+    "type": "warning",
+    "icon": "!",
+    "iconBg": "warning",
+    "title": "Deal at risk",
+    "message": "TechStart deal shows signs of potential loss",
+    "time": "15 minutes ago",
+    "isRead": false
+  },
+  {
+    "id": 3,
+    "type": "info",
+    "icon": "i",
+    "iconBg": "info",
+    "title": "Data sync completed",
+    "message": "All CRM data has been successfully synchronized",
+    "time": "1 hour ago",
+    "isRead": false
+  },
+  {
+    "id": 4,
+    "type": "primary",
+    "icon": "R",
+    "iconBg": "primary",
+    "title": "Weekly report ready",
+    "message": "Your weekly revenue report is ready to view",
+    "time": "3 hours ago",
+    "isRead": true
+  },
+  {
+    "id": 5,
+    "type": "success",
+    "icon": "✓",
+    "iconBg": "success",
+    "title": "Lead converted",
+    "message": "John Doe has been successfully converted into a qualified lead",
+    "time": "5 minutes ago",
+    "isRead": false
+  },
+  {
+    "id": 6,
+    "type": "warning",
+    "icon": "!",
+    "iconBg": "warning",
+    "title": "Low engagement",
+    "message": "Marketing campaign CTR has dropped by 12% this week",
+    "time": "12 minutes ago",
+    "isRead": false
+  },
+  {
+    "id": 7,
+    "type": "info",
+    "icon": "i",
+    "iconBg": "info",
+    "title": "New login detected",
+    "message": "A new login occurred from a different device",
+    "time": "30 minutes ago",
+    "isRead": false
+  },
+  {
+    "id": 8,
+    "type": "primary",
+    "icon": "R",
+    "iconBg": "primary",
+    "title": "Reminder",
+    "message": "Your meeting with Northwind Traders starts in 30 minutes",
+    "time": "45 minutes ago",
+    "isRead": true
+  },
+  {
+    "id": 9,
+    "type": "success",
+    "icon": "✓",
+    "iconBg": "success",
+    "title": "Target achieved",
+    "message": "You have achieved 80% of your monthly sales target",
+    "time": "1 hour ago",
+    "isRead": false
+  },
+  {
+    "id": 10,
+    "type": "danger",
+    "icon": "X",
+    "iconBg": "danger",
+    "title": "Server down",
+    "message": "One of the API servers is currently unreachable",
+    "time": "1 hour ago",
+    "isRead": true
+  },
+  {
+    "id": 11,
+    "type": "warning",
+    "icon": "!",
+    "iconBg": "warning",
+    "title": "Payment delayed",
+    "message": "Acme Corp's invoice payment is overdue by 5 days",
+    "time": "2 hours ago",
+    "isRead": false
+  },
+  {
+    "id": 12,
+    "type": "info",
+    "icon": "i",
+    "iconBg": "info",
+    "title": "Sync in progress",
+    "message": "Your pipeline data is being synced",
+    "time": "2 hours ago",
+    "isRead": true
+  },
+  {
+    "id": 13,
+    "type": "primary",
+    "icon": "R",
+    "iconBg": "primary",
+    "title": "Dashboard updated",
+    "message": "Your performance dashboard has been refreshed with new insights",
+    "time": "3 hours ago",
+    "isRead": false
+  },
+  {
+    "id": 14,
+    "type": "success",
+    "icon": "✓",
+    "iconBg": "success",
+    "title": "Email sent",
+    "message": "Your outreach email was successfully delivered to 240 recipients",
+    "time": "4 hours ago",
+    "isRead": true
+  },
+  {
+    "id": 15,
+    "type": "warning",
+    "icon": "!",
+    "iconBg": "warning",
+    "title": "Quota limit reached",
+    "message": "You have reached 90% of your monthly API quota",
+    "time": "5 hours ago",
+    "isRead": false
+  },
+  {
+    "id": 16,
+    "type": "danger",
+    "icon": "X",
+    "iconBg": "danger",
+    "title": "Unauthorized access attempt",
+    "message": "Multiple failed login attempts detected from an unknown IP",
+    "time": "6 hours ago",
+    "isRead": false
+  },
+  {
+    "id": 17,
+    "type": "info",
+    "icon": "i",
+    "iconBg": "info",
+    "title": "Backup completed",
+    "message": "System backup completed successfully",
+    "time": "7 hours ago",
+    "isRead": true
+  },
+  {
+    "id": 18,
+    "type": "primary",
+    "icon": "R",
+    "iconBg": "primary",
+    "title": "New feature available",
+    "message": "A new beta analytics feature is now available in your dashboard",
+    "time": "8 hours ago",
+    "isRead": false
+  },
+  {
+    "id": 19,
+    "type": "success",
+    "icon": "✓",
+    "iconBg": "success",
+    "title": "Task completed",
+    "message": "Your automated data cleanup process finished without errors",
+    "time": "9 hours ago",
+    "isRead": true
+  },
+  {
+    "id": 20,
+    "type": "warning",
+    "icon": "!",
+    "iconBg": "warning",
+    "title": "Slow response time",
+    "message": "Average API latency increased by 20% this afternoon",
+    "time": "10 hours ago",
+    "isRead": false
+  },
+  {
+    "id": 21,
+    "type": "danger",
+    "icon": "X",
+    "iconBg": "danger",
+    "title": "Data mismatch",
+    "message": "Some CRM records failed validation during import",
+    "time": "11 hours ago",
+    "isRead": true
+  },
+  {
+    "id": 22,
+    "type": "info",
+    "icon": "i",
+    "iconBg": "info",
+    "title": "New subscriber",
+    "message": "A new user subscribed to your newsletter",
+    "time": "12 hours ago",
+    "isRead": false
+  },
+  {
+    "id": 23,
+    "type": "primary",
+    "icon": "R",
+    "iconBg": "primary",
+    "title": "Plan upgrade",
+    "message": "Your account has been upgraded to the Pro plan",
+    "time": "Yesterday",
+    "isRead": true
+  },
+  {
+    "id": 24,
+    "type": "success",
+    "icon": "✓",
+    "iconBg": "success",
+    "title": "New integration added",
+    "message": "Slack integration is now active on your workspace",
+    "time": "Yesterday",
+    "isRead": false
+  }
+]

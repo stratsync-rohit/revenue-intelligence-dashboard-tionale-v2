@@ -1,153 +1,59 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+
 @layer base {
   :root {
-    --footer-height: 64px;
+    --footer-height: 64px; 
 
-  /* =========================================================
-   🎯 PRIMARY COLOR PALETTE (Brand & Main Actions)
-   ========================================================= */
+    /* PRIMARY COLOR PALETTE */
+    --color-primary: 6 182 212;         /* Electric cyan-blue - active/focus */
+    --color-primary-dark: 8 145 178;    /* Darker cyan for hover */
+    --color-primary-light: 34 211 238;  /* Lighter cyan for highlights */ 
+    --color-primary-50: 207 250 254;    /* Very light cyan */
+    --color-primary-100: 165 243 252;   /* Light cyan */   
 
---color-primary: 6 182 212;         
-/* 👉 Main brand color
-   Use: Primary buttons, active tabs, links, focus ring
-   Avoid: Backgrounds, errors */
+    /* SECONDARY/ACCENT COLORS */
+    --color-secondary: 14 165 233;      /* Soft cyan-blue for AI actions */
+    --color-accent: 6 182 212;          /* Primary electric cyan */
+    --color-success: 16 185 129;        /* Reserved for profit/margin/positive actions */          
+    --color-hover-success: 5 150 105;   /* Deeper green for hover confidence */
+    --color-warning: 251 191 36;        /* Amber for urgency/expiring opportunities */
+    --color-danger: 239 68 68;          /* Red for errors/critical */         
+    --color-info: 14 165 233;           /* Info cyan */          
+    /* BACKGROUND COLORS */
+    --color-bg-primary: 17 24 39;  /* Card surfaces - slightly lighter navy */
+    --color-bg-secondary: 11  15 25; /* Main background - very dark navy (almost black-blue) */
+    --color-bg-tertiary: 24 33 50;  /* Elevated/active cards - one step brighter */
+    --color-bg-hover: 30 41 59;     /* Hover state - clear elevation */
+    --color-bg-dark: 7 11 20;       /* Deeper than main */
+    --color-bg-darker: 3 7 14;      /* Darkest layer */            
 
---color-primary-dark: 8 145 178;    
-/* 👉 Primary hover / pressed state
-   Use: Button hover, active states */
+    /* TEXT COLORS */
+    --color-text-primary: 248 250 252;      /* Brightest - key numbers, outcomes */
+    --color-text-secondary: 203 213 225;    /* Softer - labels, descriptions */
+    --color-text-tertiary: 148 163 184;     /* Muted - timestamps, metadata */
+    --color-text-quaternary: 100 116 139;   /* Most subtle - logs, fine print */
+    --color-text-inverse: 11 15 25;         /* For light backgrounds */      
 
---color-primary-light: 34 211 238;  
-/* 👉 Highlight version of primary
-   Use: Badges, subtle highlights, chart accents */
-
---color-primary-50: 207 250 254;    
-/* 👉 Very light primary tint
-   Use: Info banners, soft highlights, ghost buttons */
-
---color-primary-100: 165 243 252;   
-/* 👉 Slightly stronger light tint
-   Use: Selected rows, active filters */
-
-
-/* =========================================================
-   🧩 SECONDARY / ACCENT COLORS (Supporting & Highlighting)
-   ========================================================= */
-
---color-secondary: 14 165 233;      
-/* 👉 Secondary actions
-   Use: Secondary buttons, AI actions
-   Avoid: Main CTA */
-
---color-accent: 6 182 212;          
-/* 👉 Visual highlight (non-click)
-   Use: Notification dots, chart points, tags */
-
---color-success: 16 185 129;        
-/* 👉 Positive meaning
-   Use: Profit, success messages, positive deltas */
-
---color-hover-success: 5 150 105;   
-/* 👉 Hover state for success actions
-   Use: Hover on success buttons */
-
---color-warning: 251 191 36;        
-/* 👉 Caution / attention
-   Use: Expiring items, warnings */
-
---color-danger: 239 68 68;          
-/* 👉 Critical / destructive
-   Use: Errors, delete actions */
-
---color-info: 14 165 233;           
-/* 👉 Informational context
-   Use: Tooltips, info banners */
-
-
-/* =========================================================
-   🧱 WHITE THEME BACKGROUNDS (Depth & Layout)
-   ========================================================= */
-
---color-bg-secondary: 245 245 245;  
-/* 👉 Page / browser background
-   Use: body, app shell */
-
---color-bg-primary: 241 241 241;    
-/* 👉 Main content surface
-   Use: Cards, panels, modals */
-
---color-bg-tertiary: 226 232 240;   
-/* 👉 Elevated or grouped sections
-   Use: Card sections, grouped content */
-
---color-bg-hover: 226 232 240;      
-/* 👉 Hover feedback
-   Use: Table rows, list items hover */
-
---color-bg-dark: 241 245 249;       
-/* 👉 Subtle separation
-   Use: Disabled areas, separators */
-
---color-bg-darker: 226 232 240;     
-/* 👉 Stronger separation
-   Use: Inactive blocks, footers */
-
-
-/* =========================================================
-   ✍️ TEXT COLORS (Readability Hierarchy)
-   ========================================================= */
-
---color-text-primary: 15 23 42;      
-/* 👉 High emphasis text
-   Use: Headings, prices, key numbers */
-
---color-text-secondary: 51 65 85;    
-/* 👉 Standard reading text
-   Use: Paragraphs, tables, form values */
-
---color-text-tertiary: 100 116 139;  
-/* 👉 Muted information
-   Use: Labels, timestamps, helper text */
-
---color-text-quaternary: 148 163 184;
-/* 👉 Disabled / hint text
-   Use: Placeholders, disabled states */
-
-
-/* =========================================================
-   🪟 BORDERS & OUTLINES (Structure & Focus)
-   ========================================================= */
-
---color-border-light: 226 232 240;   
-/* 👉 Subtle borders
-   Use: Card borders, dividers */
-
---color-border-medium: 203 213 225;  
-/* 👉 Clear separation
-   Use: Table borders, input outlines */
-
---color-border-dark: 148 163 184;    
-/* 👉 Strong separation
-   Use: Disabled inputs, heavy dividers */
-
---color-border-focus: 6 182 212;     
-/* 👉 Focus / active outline
-   Use: Focus ring for inputs & buttons */
-
+    /* BORDER COLORS */
+    --color-border-light: 30 41 59;         /* Subtle card borders */
+    --color-border-medium: 51 65 85;        /* Medium emphasis */
+    --color-border-dark: 71 85 105;         /* Strong definition */
+    --color-border-focus: 6 182 212;        /* Electric cyan for focus states */     
 
     /* CHART COLORS */
-    --color-chart-1: 6 182 212; /* Primary cyan */
-    --color-chart-2: 16 185 129; /* Success green */
-    --color-chart-3: 251 191 36; /* Warning amber */
-    --color-chart-4: 99 102 241; /* Indigo */
-    --color-chart-5: 236 72 153; /* Pink */
-    --color-chart-6: 168 85 247; /* Purple */
-    --color-chart-7: 251 146 60; /* Orange */
-    --color-chart-8: 148 163 184; /* Gray */
+    --color-chart-1: 6 182 212;     /* Primary cyan */
+    --color-chart-2: 16 185 129;    /* Success green */
+    --color-chart-3: 251 191 36;    /* Warning amber */
+    --color-chart-4: 99 102 241;    /* Indigo */
+    --color-chart-5: 236 72 153;    /* Pink */
+    --color-chart-6: 168 85 247;    /* Purple */
+    --color-chart-7: 251 146 60;    /* Orange */
+    --color-chart-8: 148 163 184;   /* Gray */
 
     /* STATUS COLORS */
     --color-status-active: 34 197 94;
@@ -157,37 +63,17 @@
     --color-status-warning: 234 179 8;
 
     /* GRADIENT BACKGROUNDS */
-    --gradient-primary: linear-gradient(
-      135deg,
-      rgb(6 182 212) 0%,
-      rgb(14 165 233) 100%
-    ); /* Cyan for secondary AI actions */
-    --gradient-secondary: linear-gradient(
-      135deg,
-      rgb(14 165 233) 0%,
-      rgb(59 130 246) 100%
-    ); /* Blue spectrum */
-    --gradient-success: linear-gradient(
-      135deg,
-      rgb(16 185 129) 0%,
-      rgb(5 150 105) 100%
-    ); /* Strong green confidence for CTAs */
-    --gradient-warm: linear-gradient(
-      135deg,
-      rgb(251 191 36) 0%,
-      rgb(245 158 11) 100%
-    ); /* Amber urgency gradient */
+    --gradient-primary: linear-gradient(135deg, rgb(6 182 212) 0%, rgb(14 165 233) 100%);       /* Cyan for secondary AI actions */
+    --gradient-secondary: linear-gradient(135deg, rgb(14 165 233) 0%, rgb(59 130 246) 100%);   /* Blue spectrum */
+    --gradient-success: linear-gradient(135deg, rgb(16 185 129) 0%, rgb(5 150 105) 100%);      /* Strong green confidence for CTAs */
+    --gradient-warm: linear-gradient(135deg, rgb(251 191 36) 0%, rgb(245 158 11) 100%);        /* Amber urgency gradient */
 
     /* SHADOWS */
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.5);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.2),
-      0 2px 4px -2px rgb(0 0 0 / 0.4);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.7),
-      0 4px 6px -4px rgb(0 0 0 / 0.6);
-    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.8),
-      0 8px 10px -6px rgb(0 0 0 / 0.7);
-    --shadow-primary: 0 0 20px -5px rgb(6 182 212 / 0.4),
-      0 0 40px -10px rgb(6 182 212 / 0.2); /* Subtle cyan glow for best opportunity */
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.6), 0 2px 4px -2px rgb(0 0 0 / 0.5);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.7), 0 4px 6px -4px rgb(0 0 0 / 0.6);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.8), 0 8px 10px -6px rgb(0 0 0 / 0.7);
+    --shadow-primary: 0 0 20px -5px rgb(6 182 212 / 0.4), 0 0 40px -10px rgb(6 182 212 / 0.2);  /* Subtle cyan glow for best opportunity */
 
     /* SPACING & SIZING */
     --spacing-xs: 0.25rem;
@@ -222,13 +108,13 @@
   }
 
   /* Dark mode tokens (toggle with .dark on documentElement) */
-  /* .dark {
+  .dark {
     --color-bg-primary: 17 24 39;   /* Consistent with light mode dark theme */
-  /* --color-bg-secondary: 11 15 25;
+    --color-bg-secondary: 11 15 25;
     --color-bg-tertiary: 24 33 50;
-    --color-bg-hover: 30 41 59; */
+    --color-bg-hover: 30 41 59;
 
-  /* --color-text-primary: 248 250 252;
+    --color-text-primary: 248 250 252;
     --color-text-secondary: 203 213 225;
     --color-text-tertiary: 148 163 184;
     --color-text-quaternary: 100 116 139;
@@ -236,23 +122,18 @@
     --color-border-light: 30 41 59;
     --color-border-medium: 51 65 85;
     --color-border-dark: 71 85 105;
-  } */
+  }
 
   body {
-    font-family: "Inter", sans-serif;
+    font-family: 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: rgb(var(--color-bg-secondary));
     color: rgb(var(--color-text-primary));
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: "Sora", sans-serif;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Sora', sans-serif;
     color: rgb(var(--color-text-primary));
   }
 }
@@ -262,8 +143,7 @@ html {
 }
 
 /* add bottom padding to main app wrapper so content isn't hidden behind footer */
-.main-content,
-.app-root {
+.main-content, .app-root {
   padding-bottom: var(--footer-height);
 }
 
@@ -300,7 +180,6 @@ html {
   }
 
   /* CARD (unified for stats/metrics) */
-  /* StatCard.tsx and DealCard.tsx use this class */
   .card {
     display: flex;
     flex-direction: column;
@@ -314,6 +193,11 @@ html {
     min-height: 88px;
     transition: all var(--transition-base);
     overflow: hidden;
+  }
+
+  .card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
   }
 
   .card-flat {
@@ -384,10 +268,7 @@ html {
     box-shadow: none;
   }
 
-  .badge svg {
-    width: 12px;
-    height: 12px;
-  }
+  .badge svg { width: 12px; height: 12px; }
 
   /* inputs */
   .input {
@@ -406,18 +287,10 @@ html {
     box-shadow: 0 0 0 3px rgb(var(--color-primary) / 0.08);
   }
 
-  .bg-gradient-primary {
-    background: var(--gradient-primary);
-  }
-  .bg-gradient-secondary {
-    background: var(--gradient-secondary);
-  }
-  .bg-gradient-success {
-    background: var(--gradient-success);
-  }
-  .bg-gradient-warm {
-    background: var(--gradient-warm);
-  }
+  .bg-gradient-primary { background: var(--gradient-primary); }
+  .bg-gradient-secondary { background: var(--gradient-secondary); }
+  .bg-gradient-success { background: var(--gradient-success); }
+  .bg-gradient-warm { background: var(--gradient-warm); }
 
   .text-gradient-primary {
     background: var(--gradient-primary);
@@ -426,10 +299,7 @@ html {
     background-clip: text;
   }
 
-  .text {
-    color: rgb(var(--color-text-primary));
-  }
-
+  
   .btn-ask-ai {
     display: flex;
     align-items: center;
@@ -440,11 +310,16 @@ html {
     font-size: 0.875rem;
     line-height: 1.25rem;
     font-weight: 500;
-    color: #222121; /* Changed to text-black */
-    border: 1px solid rgba(104, 55, 55, 0.15);
+    color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     background-color: transparent;
     transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
     touch-action: manipulation;
+  }
+
+  .btn-ask-ai:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 1);
   }
 
   @media (min-width: 640px) {
@@ -462,7 +337,7 @@ html {
     align-items: center;
     gap: 0.375rem;
     border-radius: 9999px;
-    border: 1px solid rgba(34, 197, 94, 0.25);
+ border: 1px solid rgba(34, 197, 94, 0.25); 
     background-color: transparent;
     padding: 0.125rem 0.625rem;
     font-size: 0.75rem;
@@ -501,7 +376,7 @@ html {
     align-items: center;
     gap: 0.25rem;
     border-radius: 9999px;
-    border: 1px solid rgba(34, 197, 94, 0.25);
+   border: 1px solid rgba(34, 197, 94, 0.25); 
     background-color: transparent;
     padding: 0.125rem 0.5rem;
     font-size: 10px;
@@ -541,18 +416,9 @@ html {
   }
 
   @media (min-width: 768px) {
-    .card {
-      padding: 1rem;
-      min-height: 96px;
-    }
-    .badge {
-      font-size: 0.75rem;
-      padding: 0.18rem 0.6rem;
-    }
-    .badge-duration {
-      font-size: 0.72rem;
-      padding: 0.15rem 0.5rem;
-    }
+    .card { padding: 1rem; min-height: 96px; }
+    .badge { font-size: 0.75rem; padding: 0.18rem 0.6rem; }
+    .badge-duration { font-size: 0.72rem; padding: 0.15rem 0.5rem; }
   }
 }
 
@@ -568,9 +434,7 @@ html {
     grid-auto-rows: 1fr;
   }
 
-  .stat-card-body {
-    min-height: 56px;
-  }
+  .stat-card-body { min-height: 56px; }
 
   .stat-card-label {
     word-break: break-word;
@@ -583,39 +447,19 @@ html {
     scrollbar-width: none;
   }
 
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
 
   @media (min-width: 768px) {
-    ::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: rgb(var(--color-border-medium));
-      border-radius: var(--radius-sm);
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: rgb(var(--color-border-dark));
-    }
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgb(var(--color-border-medium)); border-radius: var(--radius-sm); }
+    ::-webkit-scrollbar-thumb:hover { background: rgb(var(--color-border-dark)); }
   }
 
-  .animate-fade-in {
-    animation: fadeIn var(--transition-base) ease-in;
-  }
-  .animate-slide-up {
-    animation: slideUp var(--transition-base) ease-out;
-  }
-  .animate-slide-down {
-    animation: slideDown var(--transition-base) ease-out;
-  }
-  .animate-scale-in {
-    animation: scaleIn var(--transition-base) ease-out;
-  }
+  .animate-fade-in { animation: fadeIn var(--transition-base) ease-in; }
+  .animate-slide-up { animation: slideUp var(--transition-base) ease-out; }
+  .animate-slide-down { animation: slideDown var(--transition-base) ease-out; }
+  .animate-scale-in { animation: scaleIn var(--transition-base) ease-out; }
 
   .container-custom {
     width: 100%;
@@ -625,78 +469,23 @@ html {
     padding-right: var(--spacing-md);
   }
 
-  @media (min-width: 640px) {
-    .container-custom {
-      max-width: 640px;
-    }
-  }
-  @media (min-width: 768px) {
-    .container-custom {
-      max-width: 768px;
-    }
-  }
-  @media (min-width: 1024px) {
-    .container-custom {
-      max-width: 1024px;
-    }
-  }
-  @media (min-width: 1280px) {
-    .container-custom {
-      max-width: 1280px;
-    }
-  }
-  @media (min-width: 1536px) {
-    .container-custom {
-      max-width: 1536px;
-    }
-  }
+  @media (min-width: 640px) { .container-custom { max-width: 640px; } }
+  @media (min-width: 768px) { .container-custom { max-width: 768px; } }
+  @media (min-width: 1024px) { .container-custom { max-width: 1024px; } }
+  @media (min-width: 1280px) { .container-custom { max-width: 1280px; } }
+  @media (min-width: 1536px) { .container-custom { max-width: 1536px; } }
 }
 
 /* ==========================================================================
    Animations / keyframes (single definitions)
    ========================================================================== */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@keyframes slideUp {
-  from {
-    transform: translateY(10px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-@keyframes slideDown {
-  from {
-    transform: translateY(-10px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-@keyframes scaleIn {
-  from {
-    transform: scale(0.95);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { transform: translateY(10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes slideDown { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes scaleIn { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
 /* placeholder contrast */
-input::placeholder,
-textarea::placeholder {
+input::placeholder, textarea::placeholder {
   color: rgb(var(--color-text-quaternary));
   opacity: 1;
 }
@@ -713,17 +502,13 @@ textarea::placeholder {
 }
 
 .opportunity-highlight::before {
-  content: "";
+  content: '';
   position: absolute;
   top: -1px;
   left: -1px;
   right: -1px;
   bottom: -1px;
-  background: linear-gradient(
-    135deg,
-    rgb(6 182 212 / 0.1) 0%,
-    transparent 100%
-  );
+  background: linear-gradient(135deg, rgb(6 182 212 / 0.1) 0%, transparent 100%);
   border-radius: inherit;
   pointer-events: none;
 }
@@ -737,13 +522,8 @@ textarea::placeholder {
 }
 
 @keyframes pulse-urgency {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.7;
-  }
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
 }
 
 /* Primary execution CTA with green gradient */
@@ -803,7 +583,8 @@ textarea::placeholder {
 
 /* Message block for data ingestion */
 .message-block {
-  @apply rounded-xl
+  @apply 
+    rounded-xl
     border border-white/10
     bg-[rgb(var(--color-bg-primary))]
     px-4 py-3
@@ -821,13 +602,14 @@ textarea::placeholder {
 
 /* Action Button - Primary variant */
 .action-btn-primary {
-  @apply w-full sm:w-auto
+  @apply 
+    w-full sm:w-auto
     rounded-xl
     px-5 py-2.5
     text-sm font-medium
     transition-all duration-200
     active:scale-[0.98];
-
+  
   background-color: rgba(16, 185, 129, 0.08);
   color: rgb(var(--color-success));
   border: 1px solid rgba(16, 185, 129, 0.45);
@@ -841,13 +623,14 @@ textarea::placeholder {
 
 /* Action Button - Secondary variant */
 .action-btn-secondary {
-  @apply w-full sm:w-auto
+  @apply 
+    w-full sm:w-auto
     rounded-xl
     px-5 py-2.5
     text-sm font-medium
     transition-all duration-200
     active:scale-[0.98];
-
+  
   background-color: transparent;
   color: rgb(var(--color-text-primary));
   border: 1px solid rgb(var(--color-border-light));
@@ -875,7 +658,7 @@ textarea::placeholder {
 
   color: rgb(16 185 129); /* green text */
 
-  box-shadow: none;
+  box-shadow: none; /* ❌ no shadow */
 }
 
 @media (min-width: 640px) {
