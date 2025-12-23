@@ -4,21 +4,24 @@ import HeaderSlider from "./components/HeaderSlider";
 import DataIngestionContent from "./components/DataIngestionContent";
 import OverviewContent from "./components/OverviewContent";
 
-
-
-
+// TypeScript: Add global window.USER_CSS_URL declaration
+declare global {
+  interface Window {
+    USER_CSS_URL?: string;
+  }
+}
 
 const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<"overview" | "dataIngestion">("overview");
 
   useEffect(() => {
-    // Example: Fetch user CSS URL from backend
+    
     fetch("/api/get-user-css-url")
       .then((res) => res.json())
       .then((data) => {
         if (data && data.url) {
           window.USER_CSS_URL = data.url;
-          // Dynamically load the CSS if not already loaded
+          
           if (!document.querySelector(`link[href='${data.url}']`)) {
             const link = document.createElement("link");
             link.rel = "stylesheet";
@@ -32,7 +35,7 @@ const App: React.FC = () => {
   return (
     <Layout>
       <div className="mx-auto max-w-7xl w-full px-3 sm:px-4 md:px-6 lg:px-8 pt-20 sm:pt-24 md:pt-28 pb-4 sm:pb-6 space-y-4 sm:space-y-6">
-        {/* Tabs */}
+       
         <HeaderSlider activeTab={activeTab} onChange={setActiveTab} />
 
         {/* Content based on tab with smooth transition */}

@@ -93,10 +93,10 @@ const ChartSection = () => {
   return (
     <div className="card-flat">
       <div className="mb-4">
-        <h2 className="text-lg font-semibold text-gray-900">
-          Real-Time Pricing Intelligence
-        </h2>
-        <p className="text-sm text-gray-500">
+        <h2 className="text-lg font-semibold text-primary">
+    Real-Time Pricing Intelligence
+  </h2>
+        <p className="text-sm text-secondary">
           Live commodity price movements across global markets
         </p>
       </div>

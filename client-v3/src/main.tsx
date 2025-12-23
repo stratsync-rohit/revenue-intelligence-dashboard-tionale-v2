@@ -4,12 +4,11 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App.tsx';
 
 
-import '../src/css/index.css';
+import '../src/css/Parent-Index.css';
 
 
 
-// 1. Load local user CSS if exists
-const personalCssPath = '/src/css/user-index.css';
+const personalCssPath = '/src/css/index.css';
 fetch(personalCssPath, { method: 'HEAD' })
   .then((res) => {
     if (res.ok) {
@@ -21,7 +20,7 @@ fetch(personalCssPath, { method: 'HEAD' })
   })
   .catch(() => {});
 
-// 2. Load public user CSS URL if provided (e.g., from backend or window.USER_CSS_URL)
+// Load public user CSS URL if provided  from backend or window.USER_CSS_URL)
 const userCssUrl = (window as any).USER_CSS_URL;
 if (userCssUrl && typeof userCssUrl === 'string') {
   const link = document.createElement('link');
