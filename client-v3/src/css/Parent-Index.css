@@ -26,9 +26,9 @@
 
 
 
-/* =========================================================
-   🧩 SECONDARY / ACCENT COLORS (Supporting & Highlighting)
-   ========================================================= */
+
+   /* 🧩 SECONDARY / ACCENT COLORS (Supporting & Highlighting) */
+
 
 --color-secondary: 14 165 233;      
 
@@ -52,9 +52,9 @@
 
 
 
-/* =========================================================
-   🧱 WHITE THEME BACKGROUNDS (Depth & Layout)
-   ========================================================= */
+
+   /* 🧱 WHITE THEME BACKGROUNDS (Depth & Layout) */
+
 
 --color-bg-secondary: 245 245 245;  
 
@@ -75,9 +75,8 @@
 
 
 
-/* =========================================================
-   ✍️ TEXT COLORS (Readability Hierarchy)
-   ========================================================= */
+     /* TEXT COLORS (Readability Hierarchy) */
+
 
 --color-text-primary: 15 23 42;      
 
@@ -92,9 +91,8 @@
 
 
 
-/* =========================================================
-   🪟 BORDERS & OUTLINES (Structure & Focus)
-   ========================================================= */
+ /* BORDERS & OUTLINES (Structure & Focus) */
+
 
 --color-border-light: 226 232 240;   
 

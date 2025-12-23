@@ -1,3 +1,6 @@
+// <script>
+//   window.USER_CSS_URL = "https://example.com/path/to/your.css";
+// </script>
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
