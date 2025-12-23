@@ -96,6 +96,20 @@
 --color-border-dark: 148 163 184;    
 
 
---color-border-focus: 6 182 212;     
+--color-border-focus: 6 182 212;  
+
+
+ --color-user-bubble: 0 197 94; /* green */
+  --color-text-quaternary: 203 213 225;
+
+
+.bg-ai-bubble {
+  background-color: rgb(var(--color-bg-secondary));
+  border: 1px solid rgb(var(--color-border-subtle, 226 232 240));
+  border-radius: 18px;
+}
+
   }
+
+  
 }
