@@ -8,30 +8,22 @@
   :root {
     --footer-height: 64px;
 
-  /* =========================================================
-   🎯 PRIMARY COLOR PALETTE (Brand & Main Actions)
-   ========================================================= */
+
 
 --color-primary: 6 182 212;         
-/* 👉 Main brand color
-   Use: Primary buttons, active tabs, links, focus ring
-   Avoid: Backgrounds, errors */
+
 
 --color-primary-dark: 8 145 178;    
-/* 👉 Primary hover / pressed state
-   Use: Button hover, active states */
+
 
 --color-primary-light: 34 211 238;  
-/* 👉 Highlight version of primary
-   Use: Badges, subtle highlights, chart accents */
+
 
 --color-primary-50: 207 250 254;    
-/* 👉 Very light primary tint
-   Use: Info banners, soft highlights, ghost buttons */
+
 
 --color-primary-100: 165 243 252;   
-/* 👉 Slightly stronger light tint
-   Use: Selected rows, active filters */
+
 
 
 /* =========================================================
@@ -39,33 +31,25 @@
    ========================================================= */
 
 --color-secondary: 14 165 233;      
-/* 👉 Secondary actions
-   Use: Secondary buttons, AI actions
-   Avoid: Main CTA */
+
 
 --color-accent: 6 182 212;          
-/* 👉 Visual highlight (non-click)
-   Use: Notification dots, chart points, tags */
+
 
 --color-success: 16 185 129;        
-/* 👉 Positive meaning
-   Use: Profit, success messages, positive deltas */
+
 
 --color-hover-success: 5 150 105;   
-/* 👉 Hover state for success actions
-   Use: Hover on success buttons */
+
 
 --color-warning: 251 191 36;        
-/* 👉 Caution / attention
-   Use: Expiring items, warnings */
+
 
 --color-danger: 239 68 68;          
-/* 👉 Critical / destructive
-   Use: Errors, delete actions */
+
 
 --color-info: 14 165 233;           
-/* 👉 Informational context
-   Use: Tooltips, info banners */
+
 
 
 /* =========================================================
@@ -73,28 +57,22 @@
    ========================================================= */
 
 --color-bg-secondary: 245 245 245;  
-/* 👉 Page / browser background
-   Use: body, app shell */
+
 
 --color-bg-primary: 241 241 241;    
-/* 👉 Main content surface
-   Use: Cards, panels, modals */
+
 
 --color-bg-tertiary: 226 232 240;   
-/* 👉 Elevated or grouped sections
-   Use: Card sections, grouped content */
+
 
 --color-bg-hover: 226 232 240;      
-/* 👉 Hover feedback
-   Use: Table rows, list items hover */
+
 
 --color-bg-dark: 241 245 249;       
-/* 👉 Subtle separation
-   Use: Disabled areas, separators */
+
 
 --color-bg-darker: 226 232 240;     
-/* 👉 Stronger separation
-   Use: Inactive blocks, footers */
+
 
 
 /* =========================================================
@@ -102,20 +80,16 @@
    ========================================================= */
 
 --color-text-primary: 15 23 42;      
-/* 👉 High emphasis text
-   Use: Headings, prices, key numbers */
+
 
 --color-text-tertiary: 51 65 85;    
-/* 👉 Standard reading text
-   Use: Paragraphs, tables, form values */
+
 
 --color-text-secondary: 100 116 139;  
-/* 👉 Muted information
-   Use: Labels, timestamps, helper text */
+
 
 --color-text-quaternary: 148 163 184;
-/* 👉 Disabled / hint text
-   Use: Placeholders, disabled states */
+
 
 
 /* =========================================================
@@ -123,20 +97,16 @@
    ========================================================= */
 
 --color-border-light: 226 232 240;   
-/* 👉 Subtle borders
-   Use: Card borders, dividers */
+
 
 --color-border-medium: 203 213 225;  
-/* 👉 Clear separation
-   Use: Table borders, input outlines */
+
 
 --color-border-dark: 148 163 184;    
-/* 👉 Strong separation
-   Use: Disabled inputs, heavy dividers */
+
 
 --color-border-focus: 6 182 212;     
-/* 👉 Focus / active outline
-   Use: Focus ring for inputs & buttons */
+
 
 
     /* CHART COLORS */

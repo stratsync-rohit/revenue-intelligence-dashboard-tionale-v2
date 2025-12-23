@@ -1,0 +1,101 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --footer-height: 64px;
+
+
+
+--color-primary: 6 182 212;         
+
+
+--color-primary-dark: 8 145 178;    
+
+
+--color-primary-light: 34 211 238;  
+
+
+--color-primary-50: 207 250 254;    
+
+
+--color-primary-100: 165 243 252;   
+
+
+
+    /* SECONDARY / ACCENT COLORS (Supporting & Highlighting) */
+
+--color-secondary: 14 165 233;      
+
+
+--color-accent: 6 182 212;          
+
+
+--color-success: 16 185 129;        
+
+
+--color-hover-success: 5 150 105;   
+
+
+--color-warning: 251 191 36;        
+
+
+--color-danger: 239 68 68;          
+
+
+--color-info: 14 165 233;           
+
+
+
+    /* WHITE THEME BACKGROUNDS (Depth & Layout) */
+
+--color-bg-secondary: 245 245 245;  
+
+
+--color-bg-primary: 241 241 241;    
+
+
+--color-bg-tertiary: 226 232 240;   
+
+
+--color-bg-hover: 226 232 240;      
+
+
+--color-bg-dark: 241 245 249;       
+
+
+--color-bg-darker: 226 232 240;     
+
+
+
+    /* TEXT COLORS (Readability Hierarchy) */
+
+--color-text-primary: 15 23 42;      
+
+
+--color-text-tertiary: 51 65 85;    
+
+
+--color-text-secondary: 100 116 139;  
+
+
+--color-text-quaternary: 148 163 184;
+
+
+ /* BORDERS & OUTLINES (Structure & Focus) */
+
+--color-border-light: 226 232 240;   
+
+
+--color-border-medium: 203 213 225;  
+
+
+--color-border-dark: 148 163 184;    
+
+
+--color-border-focus: 6 182 212;     
+  }
+}
