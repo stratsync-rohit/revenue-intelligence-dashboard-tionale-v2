@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "./components/Layout";
 import HeaderSlider from "./components/HeaderSlider";
 import DataIngestionContent from "./components/DataIngestionContent";
@@ -7,10 +7,27 @@ import OverviewContent from "./components/OverviewContent";
 
 
 
+
 const App: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<"overview" | "dataIngestion">(
-    "overview"
-  );
+  const [activeTab, setActiveTab] = useState<"overview" | "dataIngestion">("overview");
+
+  useEffect(() => {
+    // Example: Fetch user CSS URL from backend
+    fetch("/api/get-user-css-url")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && data.url) {
+          window.USER_CSS_URL = data.url;
+          // Dynamically load the CSS if not already loaded
+          if (!document.querySelector(`link[href='${data.url}']`)) {
+            const link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.href = data.url;
+            document.head.appendChild(link);
+          }
+        }
+      });
+  }, []);
 
   return (
     <Layout>
@@ -31,7 +48,6 @@ const App: React.FC = () => {
             )}
           </div>
         </div>
-        
       </div>
     </Layout>
   );
